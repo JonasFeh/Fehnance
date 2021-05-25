@@ -18,7 +18,8 @@
                                      VerticalContentAlignment="Center"
                                      Padding="5"
                                      Foreground="#CFCFCF"
-                                     x:Name="SearchBox"/>
+                                     x:Name="SearchBox"
+                                     FontFamily="/Fonts/#Poppins"/>
                             <TextBlock IsHitTestVisible="False"
                                        Text="Search"
                                        VerticalAlignment="Center"
@@ -26,7 +27,8 @@
                                        Margin="10,0,0,0"
                                        FontSize="11"
                                        Foreground="DarkGray"
-                                       Grid.Column="1">
+                                       Grid.Column="1"
+                                       FontFamily="/Fonts/#Poppins">
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>
