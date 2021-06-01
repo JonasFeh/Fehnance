@@ -16,6 +16,10 @@
                 <view:HomeView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:BankBalanceViewModel}">
+                <view:BankBalanceView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewModel:StockViewModel}">
                 <view:StockView/>
             </DataTemplate>

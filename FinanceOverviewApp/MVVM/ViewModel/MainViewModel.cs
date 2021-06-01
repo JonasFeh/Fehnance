@@ -11,10 +11,14 @@ namespace FinanceOverviewApp.MVVM.ViewModel
     {
         public RelayCommand HomeViewCommand { get; set; }
 
+        public RelayCommand BankBalanceViewCommand { get; set; }
+
         public RelayCommand StockViewCommand { get; set; }
 
 
         public HomeViewModel HomeVM { get; set; }
+
+        public BankBalanceViewModel BankBalanceVM { get; set; }
 
         public StockViewModel StockVM { get; set; }
 
@@ -35,11 +39,17 @@ namespace FinanceOverviewApp.MVVM.ViewModel
         {
             HomeVM = new HomeViewModel();
             StockVM = new StockViewModel();
+            BankBalanceVM = new BankBalanceViewModel();
             CurrentView = HomeVM;
             HomeViewCommand = new RelayCommand(m =>
             {
                 CurrentView = HomeVM;
             });
+
+            BankBalanceViewCommand = new RelayCommand(m =>
+           {
+               CurrentView = BankBalanceVM;
+           });
 
             StockViewCommand = new RelayCommand(m =>
             {
