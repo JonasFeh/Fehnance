@@ -8,14 +8,14 @@
         mc:Ignorable="d"
         Height="600" Width="920"
         WindowStyle="None"
-        ResizeMode="NoResize"
+        ResizeMode="CanResizeWithGrip"
         Background="Transparent"
         AllowsTransparency="True">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
-    
+
     <Border Background="#252732"
             CornerRadius="15">
         <Grid>
@@ -25,7 +25,13 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
-                <RowDefinition/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <TextBlock Text="Finanzübersicht"
@@ -35,32 +41,31 @@
                    FontSize="22"
                    Margin="20,0,0,0"
                    FontFamily="/Fonts/#Poppins"/>
-            
-            <StackPanel Grid.Row="1">
-                
-                <RadioButton Content="Home"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             IsChecked="True"
-                             Command="{Binding HomeViewCommand}"/>
 
-                <RadioButton Content="Giro"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding BankBalanceViewCommand}"/>
+            <RadioButton Content="Home"
+                    Grid.Row="1"
+                    Height="50"
+                    Foreground="White"
+                    FontSize="14"
+                    Style="{StaticResource MenuButtonTheme}"
+                    IsChecked="True"
+                    Command="{Binding HomeViewCommand}"/>
 
-                <RadioButton Content="Stocks"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding StockViewCommand}"/>
+            <RadioButton Content="Giro"
+                    Grid.Row="2"
+                    Height="50"
+                    Foreground="White"
+                    FontSize="14"
+                    Style="{StaticResource MenuButtonTheme}"
+                    Command="{Binding BankBalanceViewCommand}"/>
 
-            </StackPanel>
+            <RadioButton Content="Stocks"
+                    Grid.Row="3"
+                    Height="50"
+                    Foreground="White"
+                    FontSize="14"
+                    Style="{StaticResource MenuButtonTheme}"
+                    Command="{Binding StockViewCommand}"/>
 
             <TextBox Width="250"
                      Height="40"
@@ -71,10 +76,11 @@
                      Style="{StaticResource ModernTextBox}"/>
 
             <ContentControl Grid.Row="1"
+                            Grid.RowSpan="{Binding RelativeSource={RelativeSource AncestorType=Grid}, Path=RowDefinitions.Count, Mode=OneWay}"
                             Grid.Column="1"
                             Margin="10"
                             Content="{Binding CurrentView}"/>
-            
+
         </Grid>
 
     </Border>
