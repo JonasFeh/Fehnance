@@ -1,37 +1,47 @@
-﻿using System.Xml.Serialization;
+﻿using Common;
+using System.Xml.Serialization;
 
 namespace Data.Parser
 {
     public static class XmlParser
     {
-        public static void Serialize(Type dataType, object data, string filePath)
+        private static string FileExtension = ".xml";
+
+        public static void Serialize(Type dataType, object data, string fileName)
         {
+            var aCompleteFilePath = Constants.Data.DefaultPath + fileName + FileExtension;
+
+            Directory.CreateDirectory(Constants.Data.DefaultPath);
+
             XmlSerializer serializer = new XmlSerializer(dataType);
-            if (File.Exists(filePath))
+            if (File.Exists(aCompleteFilePath))
             {
-                File.Delete(filePath);
+                File.Delete(aCompleteFilePath);
             }
 
-            TextWriter writer = new StreamWriter(filePath);
+            TextWriter writer = new StreamWriter(aCompleteFilePath);
 
             serializer.Serialize(writer, data);
             writer.Close();
         }
 
-        public static object Deserialize(Type dataType, string filePath)
+        public static bool Deserialize(Type dataType, string fileName, out object data)
         {
+            var aCompleteFilePath = Constants.Data.DefaultPath + fileName + FileExtension;
+
             XmlSerializer serializer = new XmlSerializer(dataType);
-            if (!File.Exists(filePath))
+            if (!File.Exists(aCompleteFilePath))
             {
-                throw new FileLoadException();
+                data = new object();
+                return false;
             }
 
-            TextReader textReader = new StreamReader(filePath);
-            
-            object data = serializer.Deserialize(textReader);
+            TextReader textReader = new StreamReader(aCompleteFilePath);
+
+            data = serializer.Deserialize(textReader) ?? throw new NullReferenceException("Unable to deserialize the file.");
             textReader.Close();
 
-            return data;
+            return true;
         }
     }
 }

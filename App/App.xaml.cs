@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using App.Startup;
+using System.Windows;
 
 namespace FinanceOverviewApp
 {
@@ -10,7 +11,15 @@ namespace FinanceOverviewApp
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            StartupManager.LoadData();
+            StartupManager.SaveData();
+
         }
 
+        protected override void OnExit(ExitEventArgs e)
+        {
+            StartupManager.SaveData();
+            base.OnExit(e);
+        }
     }
 }
