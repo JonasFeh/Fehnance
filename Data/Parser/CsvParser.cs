@@ -13,12 +13,15 @@ namespace Data.Parser
             {
                 parser.TextFieldType = FieldType.Delimited;
                 parser.SetDelimiters(";");
+                
+                // Discard head;
+                parser.ReadFields();
+
                 while (!parser.EndOfData)
                 {
-                    
                     string[] fields = parser.ReadFields() ?? new string[] { };
 
-                    if(fields.Length == 0)
+                    if (fields.Length == 0)
                     {
                         continue;
                     }
@@ -26,7 +29,7 @@ namespace Data.Parser
                     var currentBankActivity = new BankActivity
                     {
                         BankAccountIban = fields[0],
-                        TransactionDate = DateTime.ParseExact(fields[1], "dd-mm-yyyy", System.Globalization.CultureInfo.InvariantCulture),
+                        TransactionDate = DateTime.ParseExact(fields[1], "dd.mm.yyyy", System.Globalization.CultureInfo.InvariantCulture),
                         TransactionVolume = new Euro(double.Parse(fields[14])),
                         TransactionType = fields[3],
                         Description = fields[4],

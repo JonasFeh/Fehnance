@@ -1,29 +1,31 @@
-﻿<Application x:Class="FinanceOverviewApp.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:FinanceOverviewApp"
-             xmlns:viewModel="clr-namespace:FinanceOverviewApp.MVVM.ViewModel"
-             xmlns:view="clr-namespace:FinanceOverviewApp.MVVM.View"
-             StartupUri="MainWindow.xaml">
+﻿<Application
+    x:Class="FinanceOverviewApp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:FinanceOverviewApp"
+    xmlns:view="clr-namespace:FinanceOverviewApp.MVVM.View"
+    xmlns:viewModel="clr-namespace:FinanceOverviewApp.MVVM.ViewModel"
+    StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
-                <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml" />
+                <ResourceDictionary Source="Theme/TextBoxTheme.xaml" />
+                <ResourceDictionary Source="Resources/DataTemplates/BankActivityDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-                <view:HomeView/>
+                <view:HomeView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:BankBalanceViewModel}">
-                <view:BankBalanceView/>
+                <view:BankBalanceView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:StockViewModel}">
-                <view:StockView/>
+                <view:StockView />
             </DataTemplate>
-            
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

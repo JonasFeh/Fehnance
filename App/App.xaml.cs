@@ -11,8 +11,8 @@ namespace FinanceOverviewApp
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
             StartupManager.LoadData();
-            StartupManager.SaveData();
 
         }
 

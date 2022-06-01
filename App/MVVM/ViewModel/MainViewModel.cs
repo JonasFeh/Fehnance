@@ -1,8 +1,9 @@
-﻿using FinanceOverviewApp.Core;
+﻿using App.MVVM.Model;
+using FinanceOverviewApp.Core;
 
 namespace FinanceOverviewApp.MVVM.ViewModel
 {
-    class MainViewModel : ViewModelBase
+    class MainViewModel : ViewModelBase<MainModel>
     {
         public RelayCommand HomeViewCommand { get; set; }
 

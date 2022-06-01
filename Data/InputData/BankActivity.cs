@@ -5,9 +5,9 @@ namespace Data.InputData
     [Serializable]
     public class BankActivity : InputDataBase
     {
-        public string BankAccountIban { get; set; } = "";
-
         public DateTime TransactionDate { get; set; } = DateTime.Now;
+
+        public string BankAccountIban { get; set; } = "";
 
         public Euro TransactionVolume { get; set; } = new Euro(0.0);
 

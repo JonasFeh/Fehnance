@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using App.Core;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace FinanceOverviewApp.Core
 {
-    class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase<TModel> : INotifyPropertyChanged where TModel : ModelBase, new()
     {
+
+        protected TModel Model { get; set; } = new TModel();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
