@@ -2,7 +2,6 @@
 using Data.InputData;
 using FinanceOverviewApp.Core;
 using Microsoft.Win32;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -10,7 +9,23 @@ namespace FinanceOverviewApp.MVVM.ViewModel
 {
     public class BankBalanceViewModel : ViewModelBase<BankBalanceModel>
     {
-        public List<BankActivity> BankActivities => Model.BankActivities;
+        private ObservableCollection<BankActivity> _bankActivities;
+        public ObservableCollection<BankActivity> BankActivities
+        {
+            get
+            {
+                if (_bankActivities == null)
+                {
+                    _bankActivities = new ObservableCollection<BankActivity>();
+                }
+
+                return _bankActivities;
+            }
+            set
+            {
+                SetProperty(ref _bankActivities, value);
+            }
+        }
 
         #region ImportBankActivities
 
@@ -22,7 +37,7 @@ namespace FinanceOverviewApp.MVVM.ViewModel
             {
                 if (m_ImportBankActivities == null)
                 {
-                    m_ImportBankActivities = new RelayCommand(m => Model.ImportBankActivities(getBankActivityFilePath()));
+                    m_ImportBankActivities = new RelayCommand(m => BankActivities = new ObservableCollection<BankActivity>(Model.ImportBankActivities(getBankActivityFilePath())));
                 }
                 return m_ImportBankActivities;
             }

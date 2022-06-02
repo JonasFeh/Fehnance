@@ -8,15 +8,14 @@ namespace App.MVVM.Model
 {
     public class BankBalanceModel : ModelBase
     {
-        public List<BankActivity> BankActivities { get; set; }
 
-        public void ImportBankActivities(string FilePath)
+        public List<BankActivity> ImportBankActivities(string FilePath)
         {
-            if (FilePath == null || FilePath == string.Empty) return;
+            if (FilePath == null || FilePath == string.Empty) return new List<BankActivity>();
 
             var bankActivities = ProcessImage.Instance.BankActivities;
             bankActivities.AddRange( CsvParser.ParseBankActivities(FilePath) );
-            BankActivities = bankActivities;
+            return bankActivities;
         }
     }
 }
