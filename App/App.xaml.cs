@@ -18,7 +18,6 @@ namespace FinanceOverviewApp
 
         protected override void OnExit(ExitEventArgs e)
         {
-            StartupManager.SaveData();
             base.OnExit(e);
         }
     }

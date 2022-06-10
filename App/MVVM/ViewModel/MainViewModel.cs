@@ -1,4 +1,5 @@
 ﻿using App.MVVM.Model;
+using App.MVVM.ViewModel;
 using FinanceOverviewApp.Core;
 
 namespace FinanceOverviewApp.MVVM.ViewModel
@@ -11,6 +12,7 @@ namespace FinanceOverviewApp.MVVM.ViewModel
 
         public RelayCommand StockViewCommand { get; set; }
 
+        public TopBarViewModel TopBarVM { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
 
@@ -36,6 +38,7 @@ namespace FinanceOverviewApp.MVVM.ViewModel
             HomeVM = new HomeViewModel();
             StockVM = new StockViewModel();
             BankBalanceVM = new BankBalanceViewModel();
+            TopBarVM = new TopBarViewModel();
             CurrentView = HomeVM;
             HomeViewCommand = new RelayCommand(m =>
             {

@@ -5,13 +5,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fa="http://schemas.fontawesome.com/icons/svg"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
     xmlns:viewModel="clr-namespace:FinanceOverviewApp.MVVM.ViewModel"
-    Width="920"
-    Height="600"
+    Width="Auto"
+    Height="Auto"
     AllowsTransparency="True"
     Background="Transparent"
     ResizeMode="CanResizeWithGrip"
+    SizeChanged="Window_SizeChanged"
     WindowState="Normal"
     WindowStyle="None"
     mc:Ignorable="d">
@@ -20,19 +20,12 @@
         <viewModel:MainViewModel />
     </Window.DataContext>
 
-    <d:WindowChrome.WindowChrome>
-        <d:WindowChrome
-            CaptionHeight="43"
-            CornerRadius="25,25,10,10"
-            GlassFrameThickness="0"
-            ResizeBorderThickness="6" />
-    </d:WindowChrome.WindowChrome>
-
+    <!--  Top Bar  -->
     <Border Background="#252732">
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -60,9 +53,13 @@
                 Height="30"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
+                DataContext="{Binding TopBarVM}"
                 Orientation="Horizontal">
 
-                <Button Background="#16181f" BorderBrush="#16181f">
+                <Button
+                    Background="#16181f"
+                    BorderBrush="#16181f"
+                    Command="{Binding MinimizeWindow}">
                     <Button.Content>
                         <fa:SvgAwesome
                             Width="30"
@@ -71,7 +68,10 @@
                             PrimaryColor="White" />
                     </Button.Content>
                 </Button>
-                <Button Background="#16181f" BorderBrush="#16181f">
+                <Button
+                    Background="#16181f"
+                    BorderBrush="#16181f"
+                    Command="{Binding MaximizeWindow}">
                     <Button.Content>
                         <fa:SvgAwesome
                             Width="30"
@@ -80,7 +80,10 @@
                             PrimaryColor="White" />
                     </Button.Content>
                 </Button>
-                <Button Background="#16181f" BorderBrush="#16181f">
+                <Button
+                    Background="#16181f"
+                    BorderBrush="#16181f"
+                    Command="{Binding CloseApplication}">
                     <Button.Content>
                         <fa:SvgAwesome
                             Width="30"

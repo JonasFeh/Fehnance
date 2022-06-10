@@ -31,19 +31,5 @@ namespace App.Startup
         }
 
         #endregion
-
-        #region Saving Data
-
-        public static void SaveData()
-        {
-            SaveBankActivitiesInternal();
-        }
-
-        private static void SaveBankActivitiesInternal()
-        {
-            DataSerializer.Save<List<BankActivity>>(ProcessImage.BankActivities, Constants.Data.FileNameBankActivities);
-        }
-
-        #endregion
     }
 }
