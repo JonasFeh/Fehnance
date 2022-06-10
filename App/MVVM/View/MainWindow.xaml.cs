@@ -56,7 +56,7 @@ namespace FinanceOverviewApp
         {
             if (WindowState == WindowState.Maximized)
             {
-                BorderThickness = new Thickness(8);
+                BorderThickness = new Thickness(7);
             }
             else
             {
