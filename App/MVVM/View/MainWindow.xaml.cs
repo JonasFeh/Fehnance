@@ -27,6 +27,10 @@ namespace FinanceOverviewApp
                 }
                 else
                 {
+                    if (WindowState == WindowState.Maximized)
+                    {
+                        WindowState = WindowState.Normal;
+                    }
                     Application.Current.MainWindow.DragMove();
                 }
             }
