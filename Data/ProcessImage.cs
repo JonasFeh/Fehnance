@@ -18,7 +18,7 @@ namespace Data
         
         #endregion
 
-        public List<BankActivity> BankActivities { get; set; } = new List<BankActivity>();
+        public List<RawBankActivity> BankActivities { get; set; } = new List<RawBankActivity>();
 
     }
 }

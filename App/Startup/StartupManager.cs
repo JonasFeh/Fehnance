@@ -25,7 +25,7 @@ namespace App.Startup
 
         private static void LoadBankActivitiesInternal()
         {
-            var Data = DataSerializer.Load<List<BankActivity>>(Constants.Data.FileNameBankActivities, out var data);
+            var Data = DataSerializer.Load<List<RawBankActivity>>(Constants.Data.FileNameBankActivities, out var data);
 
             ProcessImage.BankActivities = data;
         }

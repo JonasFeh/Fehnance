@@ -22,7 +22,7 @@ namespace App.Shutdown
 
         private static void SaveBankActivities()
         {
-            DataSerializer.Save<List<BankActivity>>(ProcessImage.Instance.BankActivities, Constants.Data.FileNameBankActivities);
+            DataSerializer.Save<List<RawBankActivity>>(ProcessImage.Instance.BankActivities, Constants.Data.FileNameBankActivities);
         }
 
         public static void ExecuteShutdownRoutine()

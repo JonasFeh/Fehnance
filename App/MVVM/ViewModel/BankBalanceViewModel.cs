@@ -9,14 +9,14 @@ namespace FinanceOverviewApp.MVVM.ViewModel
 {
     public class BankBalanceViewModel : ViewModelBase<BankBalanceModel>
     {
-        private ObservableCollection<BankActivity> _bankActivities;
-        public ObservableCollection<BankActivity> BankActivities
+        private ObservableCollection<RawBankActivity> _bankActivities;
+        public ObservableCollection<RawBankActivity> BankActivities
         {
             get
             {
                 if (_bankActivities == null)
                 {
-                    _bankActivities = new ObservableCollection<BankActivity>();
+                    _bankActivities = new ObservableCollection<RawBankActivity>();
                 }
 
                 return _bankActivities;
@@ -37,7 +37,7 @@ namespace FinanceOverviewApp.MVVM.ViewModel
             {
                 if (m_ImportBankActivities == null)
                 {
-                    m_ImportBankActivities = new RelayCommand(m => BankActivities = new ObservableCollection<BankActivity>(Model.ImportBankActivities(getBankActivityFilePath())));
+                    m_ImportBankActivities = new RelayCommand(m => BankActivities = new ObservableCollection<RawBankActivity>(Model.ImportBankActivities(getBankActivityFilePath())));
                 }
                 return m_ImportBankActivities;
             }

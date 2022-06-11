@@ -1,6 +1,6 @@
 ﻿namespace Common.Currency
 {
-    public interface ICurrency
+    public interface ICurrency : IEquatable<ICurrency>
     {
         string Symbol { get; }
 

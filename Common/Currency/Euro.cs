@@ -1,7 +1,9 @@
-﻿namespace Common.Currency
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Common.Currency
 {
     [Serializable]
-    public class Euro : ICurrency
+    public struct Euro : ICurrency
     {
         public string Symbol => "€";
 
@@ -59,7 +61,7 @@
 
         public static Euro operator /(double scalar, Euro right)
         {
-            if(right.Value == 0)
+            if (right.Value == 0)
             {
                 throw new DivideByZeroException();
             }
@@ -75,6 +77,26 @@
             return new Euro(left.Value / scalar);
         }
 
+        public static bool operator ==(Euro left, Euro right)
+        {
+            return left.Value == right.Value;
+        }
+
+        public static bool operator !=(Euro left, Euro right)
+        {
+            return !(left.Value == right.Value);
+        }
+
         #endregion
+        public bool Equals(ICurrency? other)
+        {
+            if (!(other is Euro otherEuro))
+            {
+                return false;
+            }
+            const double epsilon = 1e-6;
+            return Math.Abs(Value - otherEuro.Value) < epsilon;
+        }
+
     }
 }
