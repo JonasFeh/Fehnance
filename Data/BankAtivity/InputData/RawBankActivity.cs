@@ -1,10 +1,11 @@
 ﻿using Common.Currency;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Data.InputData
 {
     [Serializable]
-    public class RawBankActivity : InputDataBase, IEquatable<RawBankActivity>
+    public class RawBankActivity : InputDataBase, IEquatable<RawBankActivity>, IEqualityComparer<RawBankActivity>
     {
         public DateTime TransactionDate { get; set; } = DateTime.Now;
 
@@ -39,6 +40,25 @@ namespace Data.InputData
                 CreditorIban == other.CreditorIban &&
                 Creditor == other.Creditor &&
                 CreditorSwift == other.CreditorSwift;
+        }
+
+        public bool Equals(RawBankActivity? x, RawBankActivity? y)
+        {
+            if (x == null || y == null) return false;
+
+            return x.TransactionDate == y.TransactionDate &&
+                x.BankAccountIban == y.BankAccountIban &&
+                x.TransactionVolume.Equals(y.TransactionVolume) &&
+                x.TransactionType == y.TransactionType &&
+                x.Description == y.Description &&
+                x.CreditorIban == y.CreditorIban &&
+                x.Creditor == y.Creditor &&
+                x.CreditorSwift == y.CreditorSwift;
+        }
+
+        public int GetHashCode([DisallowNull] RawBankActivity obj)
+        {
+            return 0;
         }
     }
 }

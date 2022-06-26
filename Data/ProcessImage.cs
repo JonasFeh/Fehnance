@@ -1,4 +1,5 @@
 ﻿using Data.InputData;
+using Data.ProcessedData;
 
 namespace Data
 {
@@ -18,7 +19,7 @@ namespace Data
         
         #endregion
 
-        public List<RawBankActivity> BankActivities { get; set; } = new List<RawBankActivity>();
+        public IDictionary<RawBankActivity, ProcessedBankActivity> BankActivities { get; set; } = new Dictionary<RawBankActivity, ProcessedBankActivity>();
 
     }
 }

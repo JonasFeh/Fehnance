@@ -1,6 +1,6 @@
-﻿namespace Data.ProcessedData
+﻿namespace Data.BankAtivity.ProcessedData
 {
-    internal struct Category
+    public struct Category
     {
         public string MainCategory { get; set; }
 

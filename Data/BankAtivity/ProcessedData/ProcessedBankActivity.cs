@@ -1,19 +1,21 @@
 ﻿using Common.Currency;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Data.BankAtivity.Enums;
+using Data.BankAtivity.ProcessedData;
 
 namespace Data.ProcessedData
 {
+
     [Serializable]
-    internal class ProcessedBankActivity
+    public class ProcessedBankActivity
     {
         public Euro Amount { get; set; }
 
         public Category Category { get; set; }
 
         public DateTime Date { get; set; }
+
+        public BankActivityType Type { get; set; }
+
+        public Regularity Regularity { get; set; }
     }
 }

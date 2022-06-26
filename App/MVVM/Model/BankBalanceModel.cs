@@ -1,7 +1,9 @@
 ﻿using App.Core;
 using Data;
+using Data.DataProcessor;
 using Data.InputData;
 using Data.Parser;
+using Data.ProcessedData;
 using System.Collections.Generic;
 
 namespace App.MVVM.Model
@@ -9,13 +11,18 @@ namespace App.MVVM.Model
     public class BankBalanceModel : ModelBase
     {
 
-        public List<RawBankActivity> ImportBankActivities(string FilePath)
+        public IDictionary<RawBankActivity, ProcessedBankActivity> ImportBankActivities(string FilePath)
         {
-            if (FilePath == null || FilePath == string.Empty) return new List<RawBankActivity>();
+            if (FilePath == null || FilePath == string.Empty) return new Dictionary<RawBankActivity, ProcessedBankActivity>();
 
-            var bankActivities = ProcessImage.Instance.BankActivities;
-            bankActivities.AddRange( CsvParser.ParseBankActivities(FilePath) );
-            return bankActivities;
+            var importedBankAcitivities = new List<RawBankActivity>(CsvParser.ParseBankActivities(FilePath));
+
+            var processor = new BankActivityProcessor();
+
+            var currentBankActivities = ProcessImage.Instance.BankActivities;
+            processor.AddToExistingDictionary(currentBankActivities, importedBankAcitivities);
+
+            return currentBankActivities;
         }
     }
 }

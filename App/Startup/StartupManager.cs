@@ -1,6 +1,7 @@
 ﻿using Common;
 using Data;
 using Data.InputData;
+using Data.ProcessedData;
 using Data.Serializer;
 using System.Collections.Generic;
 
@@ -25,7 +26,7 @@ namespace App.Startup
 
         private static void LoadBankActivitiesInternal()
         {
-            var Data = DataSerializer.Load<List<RawBankActivity>>(Constants.Data.FileNameBankActivities, out var data);
+            var Data = DataSerializer.Load<Dictionary<RawBankActivity, ProcessedBankActivity>>(Constants.Data.FileNameBankActivities, out var data);
 
             ProcessImage.BankActivities = data;
         }
