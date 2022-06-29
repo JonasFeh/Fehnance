@@ -1,26 +1,24 @@
-﻿using Data.InputData;
-using Data.ProcessedData;
+﻿using Data.BankAtivity;
+using Data.InputData;
 
 namespace Data.DataProcessor
 {
     public class BankActivityProcessor
     {
-        public KeyValuePair<BankActivityInfo, ProcessedBankActivity> Process(BankActivityInfo rawBankActivity)
-        {
-            if (ProcessImage.Instance.BankActivities.ContainsKey(rawBankActivity))
-            {
-                return new KeyValuePair<BankActivityInfo, ProcessedBankActivity>(rawBankActivity, ProcessImage.Instance.BankActivities[rawBankActivity]);
-            }
 
-            return new KeyValuePair<BankActivityInfo, ProcessedBankActivity>(rawBankActivity, new ProcessedBankActivity());
+        private BankActivityFactory bankActivityFactory = new BankActivityFactory();
+
+        public KeyValuePair<BankActivityInfo, BankActivity> Process(IDictionary<BankActivityInfo, BankActivity> bankActivities, BankActivityInfo rawBankActivity)
+        {
+            return new KeyValuePair<BankActivityInfo, BankActivity>(rawBankActivity, bankActivityFactory.Create(bankActivities, rawBankActivity));
         }
 
-        public IDictionary<BankActivityInfo, ProcessedBankActivity> AddToExistingDictionary(IDictionary<BankActivityInfo, ProcessedBankActivity> existingDictionary,
-            List<BankActivityInfo> rawBankActivities)
+        public IDictionary<BankActivityInfo, BankActivity> AddToExistingDictionary(IDictionary<BankActivityInfo,
+            BankActivity> existingDictionary, List<BankActivityInfo> rawBankActivities)
         {
             foreach (var rawBankActivity in rawBankActivities)
             {
-                var dictionaryEntry = Process(rawBankActivity);
+                var dictionaryEntry = Process(existingDictionary, rawBankActivity);
                 existingDictionary.Add(dictionaryEntry);
             }
 

@@ -1,5 +1,5 @@
-﻿using Data.InputData;
-using Data.ProcessedData;
+﻿using Data.BankAtivity;
+using Data.InputData;
 
 namespace Data
 {
@@ -19,7 +19,7 @@ namespace Data
         
         #endregion
 
-        public IDictionary<BankActivityInfo, ProcessedBankActivity> BankActivities { get; set; } = new Dictionary<BankActivityInfo, ProcessedBankActivity>();
+        public IDictionary<BankActivityInfo, BankActivity> BankActivities { get; set; } = new Dictionary<BankActivityInfo, BankActivity>();
 
     }
 }

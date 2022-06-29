@@ -1,4 +1,5 @@
 ﻿using App.MVVM.Model;
+using Data.BankAtivity;
 using Data.InputData;
 using Data.ProcessedData;
 using FinanceOverviewApp.Core;
@@ -12,8 +13,8 @@ namespace FinanceOverviewApp.MVVM.ViewModel
     public class BankBalanceViewModel : ViewModelBase<BankBalanceModel>
     {
 
-        private ObservableCollection<KeyValuePair<BankActivityInfo, ProcessedBankActivity>> _bankActivities = new ObservableCollection<KeyValuePair<BankActivityInfo, ProcessedBankActivity>>();
-        public ObservableCollection<KeyValuePair<BankActivityInfo, ProcessedBankActivity>> BankActivities
+        private ObservableCollection<BankActivity> _bankActivities = new ObservableCollection<BankActivity>();
+        public ObservableCollection<BankActivity> BankActivities
         {
             get => _bankActivities;
             set => SetProperty(ref _bankActivities, value);
@@ -29,7 +30,7 @@ namespace FinanceOverviewApp.MVVM.ViewModel
             {
                 if (m_ImportBankActivities == null)
                 {
-                    m_ImportBankActivities = new RelayCommand(m => BankActivities = new ObservableCollection<KeyValuePair<BankActivityInfo, ProcessedBankActivity>>(Model.ImportBankActivities(getBankActivityFilePath())));
+                    m_ImportBankActivities = new RelayCommand(m => BankActivities = new ObservableCollection<BankActivity>(Model.ImportBankActivities(getBankActivityFilePath())));
                 }
                 return m_ImportBankActivities;
             }

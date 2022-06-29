@@ -1,19 +1,20 @@
 ﻿using App.Core;
 using Data;
+using Data.BankAtivity;
 using Data.DataProcessor;
 using Data.InputData;
 using Data.Parser;
-using Data.ProcessedData;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace App.MVVM.Model
 {
     public class BankBalanceModel : ModelBase
     {
 
-        public IDictionary<BankActivityInfo, ProcessedBankActivity> ImportBankActivities(string FilePath)
+        public IList<BankActivity> ImportBankActivities(string FilePath)
         {
-            if (FilePath == null || FilePath == string.Empty) return new Dictionary<BankActivityInfo, ProcessedBankActivity>();
+            if (FilePath == null || FilePath == string.Empty) return new List<BankActivity>();
 
             var importedBankAcitivities = new List<BankActivityInfo>(CsvParser.ParseBankActivities(FilePath));
 
@@ -22,7 +23,7 @@ namespace App.MVVM.Model
             var currentBankActivities = ProcessImage.Instance.BankActivities;
             processor.AddToExistingDictionary(currentBankActivities, importedBankAcitivities);
 
-            return currentBankActivities;
+            return currentBankActivities.Values.ToList();
         }
     }
 }

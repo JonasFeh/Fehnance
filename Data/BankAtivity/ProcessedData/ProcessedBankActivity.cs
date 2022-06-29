@@ -5,7 +5,7 @@ namespace Data.ProcessedData
 {
 
     [Serializable]
-    public class ProcessedBankActivity
+    public class BankActivityData : BankActivityDataBase
     {
         public Euro Amount { get; set; }
 
