@@ -15,21 +15,15 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="{Binding Path=TransactionDate}" />
-                <TextBlock Grid.Column="1" Text="{Binding Path=BankAccountIban}" />
-                <StackPanel Grid.Column="2">
-                    <TextBlock Text="{Binding Path=TransactionVolume.Value}" />
-                    <TextBlock Margin="5" Text="{Binding Path=TransactionVolume.Symbol}" />
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="{Binding Path=Value.Amount.Value}" />
+                    <TextBlock Margin="5" Text="{Binding Path=Value.Amount.Symbol}" />
                 </StackPanel>
-                <TextBlock Grid.Column="3" Text="{Binding Path=TransactionType}" />
-                <TextBlock Grid.Column="4" Text="{Binding Path=Description}" />
-                <TextBlock Grid.Column="5" Text="{Binding Path=CreditorIban}" />
-                <TextBlock Grid.Column="6" Text="{Binding Path=Creditor}" />
-                <TextBlock Grid.Column="7" Text="{Binding Path=CreditorSwift}" />
+                <TextBlock Grid.Column="1" Text="{Binding Path=Value.Category}" />
+                <TextBlock Grid.Column="2" Text="{Binding Path=Value.Type}" />
+                <TextBlock Grid.Column="3" Text="{Binding Path=Value.Regularity}" />
+                <TextBlock Grid.Column="4" Text="{Binding Path=Value.Date}" />
             </Grid>
         </ScrollViewer>
     </DataTemplate>

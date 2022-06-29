@@ -5,18 +5,18 @@ namespace Data.DataProcessor
 {
     public class BankActivityProcessor
     {
-        public KeyValuePair<RawBankActivity, ProcessedBankActivity> Process(RawBankActivity rawBankActivity)
+        public KeyValuePair<BankActivityInfo, ProcessedBankActivity> Process(BankActivityInfo rawBankActivity)
         {
             if (ProcessImage.Instance.BankActivities.ContainsKey(rawBankActivity))
             {
-                return new KeyValuePair<RawBankActivity, ProcessedBankActivity>(rawBankActivity, ProcessImage.Instance.BankActivities[rawBankActivity]);
+                return new KeyValuePair<BankActivityInfo, ProcessedBankActivity>(rawBankActivity, ProcessImage.Instance.BankActivities[rawBankActivity]);
             }
 
-            return new KeyValuePair<RawBankActivity, ProcessedBankActivity>(rawBankActivity, new ProcessedBankActivity());
+            return new KeyValuePair<BankActivityInfo, ProcessedBankActivity>(rawBankActivity, new ProcessedBankActivity());
         }
 
-        public IDictionary<RawBankActivity, ProcessedBankActivity> AddToExistingDictionary(IDictionary<RawBankActivity, ProcessedBankActivity> existingDictionary,
-            List<RawBankActivity> rawBankActivities)
+        public IDictionary<BankActivityInfo, ProcessedBankActivity> AddToExistingDictionary(IDictionary<BankActivityInfo, ProcessedBankActivity> existingDictionary,
+            List<BankActivityInfo> rawBankActivities)
         {
             foreach (var rawBankActivity in rawBankActivities)
             {

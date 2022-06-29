@@ -19,7 +19,7 @@ namespace Data
         
         #endregion
 
-        public IDictionary<RawBankActivity, ProcessedBankActivity> BankActivities { get; set; } = new Dictionary<RawBankActivity, ProcessedBankActivity>();
+        public IDictionary<BankActivityInfo, ProcessedBankActivity> BankActivities { get; set; } = new Dictionary<BankActivityInfo, ProcessedBankActivity>();
 
     }
 }

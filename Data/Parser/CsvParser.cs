@@ -6,9 +6,9 @@ namespace Data.Parser
 {
     public static class CsvParser
     {
-        public static IEnumerable<RawBankActivity> ParseBankActivities(string filePath)
+        public static IEnumerable<BankActivityInfo> ParseBankActivities(string filePath)
         {
-            var bankActivities = new List<RawBankActivity>();
+            var bankActivities = new List<BankActivityInfo>();
             using (TextFieldParser parser = new TextFieldParser(filePath))
             {
                 parser.TextFieldType = FieldType.Delimited;
@@ -26,7 +26,7 @@ namespace Data.Parser
                         continue;
                     }
 
-                    var currentBankActivity = new RawBankActivity
+                    var currentBankActivity = new BankActivityInfo
                     {
                         BankAccountIban = fields[0],
                         TransactionDate = DateTime.ParseExact(fields[1], "dd.mm.yyyy", System.Globalization.CultureInfo.InvariantCulture),

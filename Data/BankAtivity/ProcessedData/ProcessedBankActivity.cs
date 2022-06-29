@@ -1,5 +1,4 @@
 ﻿using Common.Currency;
-using Data.BankAtivity.Enums;
 using Data.BankAtivity.ProcessedData;
 
 namespace Data.ProcessedData

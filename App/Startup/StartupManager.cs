@@ -26,7 +26,7 @@ namespace App.Startup
 
         private static void LoadBankActivitiesInternal()
         {
-            var Data = DataSerializer.Load<Dictionary<RawBankActivity, ProcessedBankActivity>>(Constants.Data.FileNameBankActivities, out var data);
+            DataSerializer.Load<KeyValuePair<BankActivityInfo, ProcessedBankActivity>>(Constants.Data.FileNameBankActivities, out var data);
 
             ProcessImage.BankActivities = data;
         }

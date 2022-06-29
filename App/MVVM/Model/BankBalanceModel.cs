@@ -11,11 +11,11 @@ namespace App.MVVM.Model
     public class BankBalanceModel : ModelBase
     {
 
-        public IDictionary<RawBankActivity, ProcessedBankActivity> ImportBankActivities(string FilePath)
+        public IDictionary<BankActivityInfo, ProcessedBankActivity> ImportBankActivities(string FilePath)
         {
-            if (FilePath == null || FilePath == string.Empty) return new Dictionary<RawBankActivity, ProcessedBankActivity>();
+            if (FilePath == null || FilePath == string.Empty) return new Dictionary<BankActivityInfo, ProcessedBankActivity>();
 
-            var importedBankAcitivities = new List<RawBankActivity>(CsvParser.ParseBankActivities(FilePath));
+            var importedBankAcitivities = new List<BankActivityInfo>(CsvParser.ParseBankActivities(FilePath));
 
             var processor = new BankActivityProcessor();
 
