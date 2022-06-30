@@ -4,6 +4,7 @@ using Data.BankAtivity;
 using Data.InputData;
 using Data.Serializer;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace App.Shutdown
 {
@@ -23,7 +24,7 @@ namespace App.Shutdown
 
         private static void SaveBankActivities()
         {
-            DataSerializer.Save<Dictionary<BankActivityInfo, BankActivity>>(ProcessImage.Instance.BankActivities, Constants.Data.FileNameBankActivities);
+            DataSerializer.Save<List<BankActivity>>(ProcessImage.Instance.BankActivities.Values.ToList(), Constants.Data.FileNameBankActivities);
         }
 
         public static void ExecuteShutdownRoutine()

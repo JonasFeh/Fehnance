@@ -19,13 +19,12 @@
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Interval" />
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Date" />
             </Grid.ColumnDefinitions>
-            <StackPanel
+
+            <TextBlock
                 Grid.Column="0"
                 Margin="20,0,20,0"
                 HorizontalAlignment="Right"
-                Orientation="Horizontal">
-                <TextBlock HorizontalAlignment="Right" Text="{Binding Path=Data.Amount.DisplayValue}" />
-            </StackPanel>
+                Text="{Binding Path=Data.Amount.DisplayValue}" />
             <TextBlock
                 Grid.Column="1"
                 HorizontalAlignment="Right"
