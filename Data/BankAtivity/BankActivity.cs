@@ -8,6 +8,6 @@ namespace Data.BankAtivity
     {
         public BankActivityInfo Info { get; set; } = new BankActivityInfo();
 
-        public BankActivityDataBase Data { get; set; } = new BankActivityData();
+        public BankActivityData Data { get; set; } = new BankActivityData();
     }
 }

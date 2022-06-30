@@ -2,29 +2,54 @@
     <Style TargetType="TextBlock">
         <Setter Property="FontFamily" Value="/Fonts/#Poppins" />
         <Setter Property="Foreground" Value="White" />
+        <Setter Property="Margin" Value="0,0,20,0" />
+        <Setter Property="MinWidth" Value="20" />
     </Style>
     <DataTemplate x:Key="BankActivityDataTemplate">
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="{Binding Path=Value.Amount.Value}" />
-                    <TextBlock Margin="5" Text="{Binding Path=Value.Amount.Symbol}" />
-                </StackPanel>
-                <TextBlock Grid.Column="1" Text="{Binding Path=Value.Category}" />
-                <TextBlock Grid.Column="2" Text="{Binding Path=Value.Type}" />
-                <TextBlock Grid.Column="3" Text="{Binding Path=Value.Regularity}" />
-                <TextBlock Grid.Column="4" Text="{Binding Path=Value.Date}" />
-            </Grid>
-        </ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="TransactionVolume" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="MainCategory" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="SubCategory" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Type" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Regularity" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Interval" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Date" />
+            </Grid.ColumnDefinitions>
+            <StackPanel
+                Grid.Column="0"
+                Margin="20,0,20,0"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Right" Text="{Binding Path=Data.Amount.DisplayValue}" />
+            </StackPanel>
+            <TextBlock
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Text="{Binding Path=Data.Category.MainCategory}" />
+            <TextBlock
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                Text="{Binding Path=Data.Category.SubCategory}" />
+            <TextBlock
+                Grid.Column="3"
+                HorizontalAlignment="Right"
+                Text="{Binding Path=Data.Type}" />
+            <TextBlock
+                Grid.Column="4"
+                HorizontalAlignment="Right"
+                Text="{Binding Path=Data.Regularity.Type}" />
+            <TextBlock
+                Grid.Column="5"
+                HorizontalAlignment="Right"
+                Text="{Binding Path=Data.Regularity.Interval}" />
+            <TextBlock
+                Grid.Column="6"
+                HorizontalAlignment="Right"
+                Text="{Binding Path=Data.Date, StringFormat='{}{0:dd.MM.yyyy}'}" />
+        </Grid>
     </DataTemplate>
 </ResourceDictionary>

@@ -4,6 +4,6 @@
     {
         public string MainCategory { get; set; }
 
-        public string SubCatergory { get; set; }
+        public string SubCategory { get; set; }
     }
 }

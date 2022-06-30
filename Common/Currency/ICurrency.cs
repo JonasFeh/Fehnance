@@ -8,6 +8,8 @@
 
         string Abbreviation { get; }
 
-        double Value { get; set; }
+        decimal Value { get; set; }
+
+        string DisplayValue { get; }
     }
 }

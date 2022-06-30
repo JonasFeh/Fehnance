@@ -10,7 +10,7 @@ namespace Data.InputData
 
         public string BankAccountIban { get; set; } = "";
 
-        public Euro TransactionVolume { get; set; } = new Euro(0.0);
+        public Euro TransactionVolume { get; set; } = new Euro(0.0M);
 
         public string TransactionType { get; set; } = "";
 

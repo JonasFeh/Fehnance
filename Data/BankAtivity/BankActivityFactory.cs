@@ -1,10 +1,15 @@
-﻿using Data.BankAtivity.ProcessedData;
-using Data.InputData;
+﻿using Data.InputData;
+using Data.ProcessedData;
 
 namespace Data.BankAtivity
 {
     public class BankActivityFactory
     {
+        private BankActivityType ResolveBankActivityType(BankActivityInfo info)
+        {
+            return info.TransactionVolume.Value >= 0 ? BankActivityType.Income : BankActivityType.Spendings;
+        }
+
         public BankActivity Create(IDictionary<BankActivityInfo, BankActivity> bankActivities, BankActivityInfo info)
         {
             if (bankActivities == null) throw new ArgumentNullException("Bank activities needed to construct bank acitivities!");
@@ -16,7 +21,18 @@ namespace Data.BankAtivity
                 return new BankActivity
                 {
                     Info = info,
-                    Data = new BankActivityNullData()
+                    Data = new BankActivityData
+                    {
+                        Amount = info.TransactionVolume,
+                        Category = new ProcessedData.Category
+                        {
+                            MainCategory = String.Empty,
+                            SubCategory = String.Empty
+                        },
+                        Date = info.TransactionDate,
+                        Regularity = new ProcessedData.Regularity(),
+                        Type = ResolveBankActivityType(info)
+                    }
                 };
             }
 

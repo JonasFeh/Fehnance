@@ -28,8 +28,12 @@ namespace App.Startup
         {
             DataSerializer.Load<List<BankActivity>>(Constants.Data.FileNameBankActivities, out var data);
 
-            var dictionary = new Dictionary<BankActivityInfo, BankActivity>();
+            if(data == null)
+            {
+                return;
+            }
 
+            var dictionary = new Dictionary<BankActivityInfo, BankActivity>();
             foreach (var bankActivity in data)
             {
                 dictionary.Add(bankActivity.Info, bankActivity);

@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace Common.Currency
+﻿namespace Common.Currency
 {
     [Serializable]
     public struct Euro : ICurrency
@@ -11,18 +9,21 @@ namespace Common.Currency
 
         public string Abbreviation => "EUR";
 
-        private double _value;
-        public double Value
+        private decimal _value;
+        public decimal Value
         {
             get => _value;
             set => _value = value;
         }
+
+        public string DisplayValue => Value.ToString("C2");
+
         public Euro()
         {
-            _value = 0.0;
+            _value = 0.0M;
         }
 
-        public Euro(double value)
+        public Euro(decimal value)
         {
             _value = value;
         }
@@ -51,12 +52,12 @@ namespace Common.Currency
 
         public static Euro operator *(double scalar, Euro right)
         {
-            return new Euro(scalar * right.Value);
+            return new Euro((decimal)scalar * right.Value);
         }
 
         public static Euro operator *(Euro left, double scalar)
         {
-            return new Euro(left.Value * scalar);
+            return new Euro(left.Value * (decimal)scalar);
         }
 
         public static Euro operator /(double scalar, Euro right)
@@ -65,7 +66,7 @@ namespace Common.Currency
             {
                 throw new DivideByZeroException();
             }
-            return new Euro(scalar / right.Value);
+            return new Euro((decimal)scalar / right.Value);
         }
 
         public static Euro operator /(Euro left, double scalar)
@@ -74,7 +75,7 @@ namespace Common.Currency
             {
                 throw new DivideByZeroException();
             }
-            return new Euro(left.Value / scalar);
+            return new Euro(left.Value / (decimal)scalar);
         }
 
         public static bool operator ==(Euro left, Euro right)
@@ -94,7 +95,7 @@ namespace Common.Currency
             {
                 return false;
             }
-            const double epsilon = 1e-6;
+            const decimal epsilon = 1e-6M;
             return Math.Abs(Value - otherEuro.Value) < epsilon;
         }
 

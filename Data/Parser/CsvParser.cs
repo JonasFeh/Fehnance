@@ -30,7 +30,7 @@ namespace Data.Parser
                     {
                         BankAccountIban = fields[0],
                         TransactionDate = DateTime.ParseExact(fields[1], "dd.mm.yyyy", System.Globalization.CultureInfo.InvariantCulture),
-                        TransactionVolume = new Euro(double.Parse(fields[14])),
+                        TransactionVolume = new Euro(decimal.Parse(fields[14])),
                         TransactionType = fields[3],
                         Description = fields[4],
                         Creditor = fields[11],

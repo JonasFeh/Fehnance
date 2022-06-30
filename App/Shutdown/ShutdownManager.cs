@@ -1,7 +1,7 @@
 ﻿using Common;
 using Data;
+using Data.BankAtivity;
 using Data.InputData;
-using Data.ProcessedData;
 using Data.Serializer;
 using System.Collections.Generic;
 
@@ -23,7 +23,7 @@ namespace App.Shutdown
 
         private static void SaveBankActivities()
         {
-            DataSerializer.Save<Dictionary<BankActivityInfo, BankActivityData>>(ProcessImage.Instance.BankActivities, Constants.Data.FileNameBankActivities);
+            DataSerializer.Save<Dictionary<BankActivityInfo, BankActivity>>(ProcessImage.Instance.BankActivities, Constants.Data.FileNameBankActivities);
         }
 
         public static void ExecuteShutdownRoutine()

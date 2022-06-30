@@ -1,10 +1,7 @@
 ﻿using App.MVVM.Model;
 using Data.BankAtivity;
-using Data.InputData;
-using Data.ProcessedData;
 using FinanceOverviewApp.Core;
 using Microsoft.Win32;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
