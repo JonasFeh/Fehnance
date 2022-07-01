@@ -18,8 +18,13 @@ namespace Data.DataProcessor
         {
             foreach (var rawBankActivity in rawBankActivities)
             {
-                var dictionaryEntry = Process(existingDictionary, rawBankActivity);
-                existingDictionary.Add(dictionaryEntry);
+                if (rawBankActivity == null) continue;
+
+                if (!existingDictionary.ContainsKey(rawBankActivity))
+                {
+                    var dictionaryEntry = Process(existingDictionary, rawBankActivity);
+                    existingDictionary.Add(dictionaryEntry);
+                }
             }
 
             return existingDictionary;

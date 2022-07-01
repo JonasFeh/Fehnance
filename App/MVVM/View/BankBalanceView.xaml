@@ -120,7 +120,8 @@
                     BorderBrush="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Background}"
                     ItemTemplate="{StaticResource BankActivityDataTemplate}"
                     ItemsSource="{Binding BankActivities}"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    SelectedItem="{Binding SelectedBankActivity, Mode=TwoWay}" />
             </Grid>
 
         </Border>

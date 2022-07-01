@@ -12,7 +12,7 @@ namespace FinanceOverviewApp
         {
             base.OnStartup(e);
 
-            StartupManager.LoadData();
+            StartupManager.StartUp();
 
         }
 

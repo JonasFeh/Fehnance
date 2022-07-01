@@ -11,7 +11,6 @@ namespace App.MVVM.Model
 {
     public class BankBalanceModel : ModelBase
     {
-
         public IList<BankActivity> ImportBankActivities(string FilePath)
         {
             if (FilePath == null || FilePath == string.Empty) return new List<BankActivity>();
@@ -22,8 +21,10 @@ namespace App.MVVM.Model
 
             var currentBankActivities = ProcessImage.Instance.BankActivities;
             processor.AddToExistingDictionary(currentBankActivities, importedBankAcitivities);
-
             return currentBankActivities.Values.ToList();
         }
+
+
+
     }
 }

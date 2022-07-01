@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using App.Registries;
+using Common;
 using Data;
 using Data.BankAtivity;
 using Data.InputData;
@@ -10,18 +11,22 @@ namespace App.Startup
     internal static class StartupManager
     {
         private static DataSerializer DataSerializer { get; set; }
+
+        private static ViewItemFactory ViewItemsFactory { get; set; }
         private static ProcessImage ProcessImage => ProcessImage.Instance;
 
         static StartupManager()
         {
             DataSerializer = new DataSerializer();
+            ViewItemsFactory = new ViewItemFactory();
         }
 
         #region Loading Data
 
-        public static void LoadData()
+        public static void StartUp()
         {
             LoadBankActivitiesInternal();
+            ViewItemsFactory.StartUpMVVM();
         }
 
         private static void LoadBankActivitiesInternal()

@@ -28,5 +28,8 @@ namespace FinanceOverviewApp.Core
             OnPropertyChanged(propertyName);
             return true;
         }
+        public virtual void OnStartup()
+        {
+        }
     }
 }

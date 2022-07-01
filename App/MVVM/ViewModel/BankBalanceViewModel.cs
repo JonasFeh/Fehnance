@@ -17,6 +17,14 @@ namespace FinanceOverviewApp.MVVM.ViewModel
             set => SetProperty(ref _bankActivities, value);
         }
 
+        private BankActivity _selectedBankActivity;
+
+        public BankActivity SelectedBankActivity 
+        {
+            get => _selectedBankActivity;
+            set => SetProperty(ref _selectedBankActivity, value);
+        }
+
         #region ImportBankActivities
 
         RelayCommand m_ImportBankActivities;
@@ -32,6 +40,8 @@ namespace FinanceOverviewApp.MVVM.ViewModel
                 return m_ImportBankActivities;
             }
         }
+
+
 
 
         private string getBankActivityFilePath()

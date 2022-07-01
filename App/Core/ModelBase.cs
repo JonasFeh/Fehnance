@@ -2,5 +2,9 @@
 {
     public class ModelBase
     {
+        public virtual void OnStartup()
+        {
+
+        }
     }
 }

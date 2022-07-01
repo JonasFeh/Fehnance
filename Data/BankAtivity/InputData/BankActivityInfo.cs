@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Data.InputData
 {
     [Serializable]
-    public class BankActivityInfo : InputDataBase, IEquatable<BankActivityInfo>, IEqualityComparer<BankActivityInfo>
+    public class BankActivityInfo : InputDataBase, IEquatable<BankActivityInfo>
     {
         public DateTime TransactionDate { get; set; } = DateTime.Now;
 
@@ -41,6 +41,12 @@ namespace Data.InputData
                 CreditorSwift == other.CreditorSwift;
         }
 
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as BankActivityInfo);
+        }
+
+
         public bool Equals(BankActivityInfo? x, BankActivityInfo? y)
         {
             if (x == null || y == null) return false;
@@ -55,9 +61,20 @@ namespace Data.InputData
                 x.CreditorSwift == y.CreditorSwift;
         }
 
-        public int GetHashCode([DisallowNull] BankActivityInfo obj)
+        public override int GetHashCode()
         {
-            return 0;
+            int hash = 17;
+
+            hash = hash * 23 + TransactionDate.GetHashCode();
+            hash = hash * 23 + BankAccountIban.GetHashCode();
+            hash = hash * 23 + TransactionVolume.Value.GetHashCode();
+            hash = hash * 23 + TransactionType.GetHashCode();
+            hash = hash * 23 + Description.GetHashCode();
+            hash = hash * 23 + CreditorIban.GetHashCode();
+            hash = hash * 23 + CreditorSwift.GetHashCode();
+            hash = hash * 23 + Creditor.GetHashCode();
+
+            return hash;
         }
     }
 }
