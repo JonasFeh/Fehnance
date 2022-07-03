@@ -1,5 +1,6 @@
 ﻿using Data.InputData;
 using Data.ProcessedData;
+using System.Text;
 
 namespace Data.BankAtivity
 {
@@ -8,6 +9,31 @@ namespace Data.BankAtivity
         private BankActivityType ResolveBankActivityType(BankActivityInfo info)
         {
             return info.TransactionVolume.Value >= 0 ? BankActivityType.Income : BankActivityType.Spendings;
+        }
+
+        private String NormalizeName(string name)
+        {
+            name.Trim();
+            char currentChar = char.MinValue;
+            var normalizedName = new StringBuilder();
+            foreach (var character in name)
+            {
+                if (char.IsWhiteSpace(character))
+                {
+                    if (!char.IsWhiteSpace(currentChar))
+                    {
+                        normalizedName.Append(character);
+                        currentChar = character;
+                    }
+                }
+                else
+                {
+                    normalizedName.Append(character);
+                    currentChar = character;
+                }
+            }
+            var result = normalizedName.ToString().Normalize();
+            return result;
         }
 
         public BankActivity Create(IDictionary<BankActivityInfo, BankActivity> bankActivities, BankActivityInfo info)
@@ -31,7 +57,8 @@ namespace Data.BankAtivity
                         },
                         Date = info.TransactionDate,
                         Regularity = new ProcessedData.Regularity(),
-                        Type = ResolveBankActivityType(info)
+                        Type = ResolveBankActivityType(info),
+                        Name = NormalizeName(info.Creditor),
                     }
                 };
             }

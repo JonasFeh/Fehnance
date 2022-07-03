@@ -13,10 +13,13 @@
     <UserControl.DataContext>
         <viewModel:BankBalanceViewModel />
     </UserControl.DataContext>
-    <StackPanel Margin="10,0,0,10" Orientation="Horizontal">
+    <WrapPanel
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        Orientation="Horizontal">
         <Border
             x:Name="BorderBankActivity"
-            Width="700"
+            Width="1080"
             Height="500">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
@@ -29,7 +32,7 @@
                 <RectangleGeometry
                     RadiusX="10"
                     RadiusY="10"
-                    Rect="0,0,700,500" />
+                    Rect="0,0,1080,500" />
             </Border.Clip>
 
             <Grid IsSharedSizeScope="True">
@@ -65,13 +68,17 @@
 
                 <!--  Header  -->
                 <Grid
+                    x:Name="HeaderGrid"
                     Grid.Row="1"
                     Grid.Column="0"
-                    Margin="20,0,0,0">
+                    Margin="20,0,0,0"
+                    HorizontalAlignment="Left">
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Name" />
                         <ColumnDefinition Width="Auto" SharedSizeGroup="TransactionVolume" />
                         <ColumnDefinition Width="Auto" SharedSizeGroup="MainCategory" />
                         <ColumnDefinition Width="Auto" SharedSizeGroup="SubCategory" />
@@ -83,48 +90,56 @@
                     <TextBlock
                         Grid.Column="0"
                         HorizontalAlignment="Center"
-                        Text="Transaction Volume" />
+                        Text="Name" />
                     <TextBlock
                         Grid.Column="1"
                         HorizontalAlignment="Center"
-                        Text="Main Category" />
+                        Text="Transaction Volume" />
                     <TextBlock
                         Grid.Column="2"
                         HorizontalAlignment="Center"
-                        Text="Sub Category" />
+                        Text="Main Category" />
                     <TextBlock
                         Grid.Column="3"
                         HorizontalAlignment="Center"
-                        Text="Type" />
+                        Text="Sub Category" />
                     <TextBlock
                         Grid.Column="4"
                         HorizontalAlignment="Center"
-                        Text="Regularity" />
+                        Text="Type" />
                     <TextBlock
                         Grid.Column="5"
                         HorizontalAlignment="Center"
-                        Text="Interval" />
+                        Text="Regularity" />
                     <TextBlock
                         Grid.Column="6"
-                        HorizontalAlignment="Right"
+                        HorizontalAlignment="Center"
+                        Text="Interval" />
+                    <TextBlock
+                        Grid.Column="7"
+                        HorizontalAlignment="Center"
                         Text="Date" />
                 </Grid>
 
                 <ListBox
+                    x:Name="BankActivityList"
                     Grid.Row="1"
                     Grid.Column="0"
-                    Width="800"
+                    MaxWidth="1200"
                     MaxHeight="400"
                     Margin="10,20,20,10"
+                    HorizontalAlignment="Left"
+                    d:ItemsSource="{d:SampleData ItemCount=5}"
                     Background="#0d1c4d"
                     BorderBrush="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Background}"
                     ItemTemplate="{StaticResource BankActivityDataTemplate}"
-                    ItemsSource="{Binding BankActivities, Mode=TwoWay}"
+                    ItemsSource="{Binding BankActivities}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
-                    SelectedItem="{Binding SelectedBankActivity, Mode=TwoWay}" />
+                    SelectedItem="{Binding SelectedBankActivity}" />
             </Grid>
 
         </Border>
 
-    </StackPanel>
+    </WrapPanel>
 </UserControl>

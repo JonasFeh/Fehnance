@@ -11,6 +11,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350" SharedSizeGroup="Name" />
                 <ColumnDefinition Width="Auto" SharedSizeGroup="TransactionVolume" />
                 <ColumnDefinition Width="Auto" SharedSizeGroup="MainCategory" />
                 <ColumnDefinition Width="Auto" SharedSizeGroup="SubCategory" />
@@ -23,30 +24,35 @@
             <TextBlock
                 Grid.Column="0"
                 Margin="20,0,20,0"
+                HorizontalAlignment="Left"
+                Text="{Binding Path=Data.Name}" />
+            <TextBlock
+                Grid.Column="1"
+                Margin="20,0,20,0"
                 HorizontalAlignment="Right"
                 Text="{Binding Path=Data.Amount.DisplayValue}" />
             <TextBlock
-                Grid.Column="1"
+                Grid.Column="2"
                 HorizontalAlignment="Right"
                 Text="{Binding Path=Data.Category.MainCategory}" />
             <TextBlock
-                Grid.Column="2"
+                Grid.Column="3"
                 HorizontalAlignment="Right"
                 Text="{Binding Path=Data.Category.SubCategory}" />
             <TextBlock
-                Grid.Column="3"
+                Grid.Column="4"
                 HorizontalAlignment="Right"
                 Text="{Binding Path=Data.Type}" />
             <TextBlock
-                Grid.Column="4"
+                Grid.Column="5"
                 HorizontalAlignment="Right"
                 Text="{Binding Path=Data.Regularity.Type}" />
             <TextBlock
-                Grid.Column="5"
+                Grid.Column="6"
                 HorizontalAlignment="Right"
                 Text="{Binding Path=Data.Regularity.Interval}" />
             <TextBlock
-                Grid.Column="6"
+                Grid.Column="7"
                 HorizontalAlignment="Right"
                 Text="{Binding Path=Data.Date, StringFormat='{}{0:dd.MM.yyyy}'}" />
         </Grid>

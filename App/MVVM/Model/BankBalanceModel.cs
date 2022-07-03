@@ -27,8 +27,5 @@ namespace App.MVVM.Model
             processor.AddToExistingDictionary(currentBankActivities, importedBankAcitivities);
             return currentBankActivities.Values.ToList();
         }
-
-
-
     }
 }
