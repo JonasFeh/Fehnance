@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace FinanceOverviewApp.Core
 {
-    public class ViewModelBase<TModel> : INotifyPropertyChanged where TModel : ModelBase, new()
+    public class ViewModelBase<TModel> : ViewModelBase, INotifyPropertyChanged where TModel : ModelBase, new()
     {
 
         protected TModel Model { get; set; } = new TModel();
@@ -31,5 +31,10 @@ namespace FinanceOverviewApp.Core
         public virtual void OnStartup()
         {
         }
+    }
+
+    public class ViewModelBase
+    {
+
     }
 }

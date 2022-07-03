@@ -1,6 +1,9 @@
 ﻿using App.MVVM.Model;
+using App.MVVM.ViewItem;
 using App.MVVM.ViewModel;
+using App.Registries;
 using FinanceOverviewApp.Core;
+using System;
 
 namespace FinanceOverviewApp.MVVM.ViewModel
 {
@@ -21,9 +24,9 @@ namespace FinanceOverviewApp.MVVM.ViewModel
         public StockViewModel StockVM { get; set; }
 
 
-        private object m_CurrenView;
+        private ViewModelBase m_CurrenView;
 
-        public object CurrentView
+        public ViewModelBase CurrentView
         {
             get { return m_CurrenView; }
             set
@@ -37,7 +40,7 @@ namespace FinanceOverviewApp.MVVM.ViewModel
         {
             HomeVM = new HomeViewModel();
             StockVM = new StockViewModel();
-            BankBalanceVM = new BankBalanceViewModel();
+            BankBalanceVM = ViewItemFactory.ViewItems[BankBalanceViewItem.Id].ViewModel as BankBalanceViewModel?? throw new NullReferenceException();
             TopBarVM = new TopBarViewModel();
             CurrentView = HomeVM;
             HomeViewCommand = new RelayCommand(m =>
@@ -46,9 +49,9 @@ namespace FinanceOverviewApp.MVVM.ViewModel
             });
 
             BankBalanceViewCommand = new RelayCommand(m =>
-           {
-               CurrentView = BankBalanceVM;
-           });
+            {
+                CurrentView = BankBalanceVM;
+            });
 
             StockViewCommand = new RelayCommand(m =>
             {

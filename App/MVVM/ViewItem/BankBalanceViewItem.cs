@@ -11,10 +11,14 @@ namespace App.MVVM.ViewItem
     {
         public static Guid Id => new Guid("7A83D0DC-E02C-4396-BAB3-9A6A5F06EEC5");
 
-        public override BankBalanceViewModel ViewModel => new BankBalanceViewModel();
 
-        public override BankBalanceModel Model => new BankBalanceModel();
+        private readonly BankBalanceViewModel _bankBalanceViewModel = new BankBalanceViewModel();
+        public override BankBalanceViewModel ViewModel => _bankBalanceViewModel;
 
-        public override UserControl View => new BankBalanceView();
+        private readonly BankBalanceModel _bankBalanceModel = new BankBalanceModel();
+        public override BankBalanceModel Model => _bankBalanceModel;
+
+        private readonly UserControl _userControl = new BankBalanceView();
+        public override UserControl View => _userControl;
     }
 }

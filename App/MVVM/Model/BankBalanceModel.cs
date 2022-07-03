@@ -11,6 +11,10 @@ namespace App.MVVM.Model
 {
     public class BankBalanceModel : ModelBase
     {
+        public override void OnStartup()
+        {
+        }
+        public IList<BankActivity> BankActivities => ProcessImage.Instance.BankActivities.Values.ToList();
         public IList<BankActivity> ImportBankActivities(string FilePath)
         {
             if (FilePath == null || FilePath == string.Empty) return new List<BankActivity>();

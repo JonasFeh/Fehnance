@@ -12,13 +12,11 @@ namespace App.Startup
     {
         private static DataSerializer DataSerializer { get; set; }
 
-        private static ViewItemFactory ViewItemsFactory { get; set; }
         private static ProcessImage ProcessImage => ProcessImage.Instance;
 
         static StartupManager()
         {
             DataSerializer = new DataSerializer();
-            ViewItemsFactory = new ViewItemFactory();
         }
 
         #region Loading Data
@@ -26,7 +24,7 @@ namespace App.Startup
         public static void StartUp()
         {
             LoadBankActivitiesInternal();
-            ViewItemsFactory.StartUpMVVM();
+            ViewItemFactory.StartUpMVVM();
         }
 
         private static void LoadBankActivitiesInternal()

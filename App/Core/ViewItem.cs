@@ -5,16 +5,13 @@ using System.Windows.Controls;
 namespace App.Core
 {
     public abstract class ViewItem<TViewModel, TModel> : ViewItem
-        where TViewModel : ViewModelBase<TModel> 
+        where TViewModel : ViewModelBase<TModel>, new()
         where TModel : ModelBase, new() 
     {
-        public static Guid Id { get; }
 
-        public abstract TViewModel ViewModel { get; }
+        public override TModel Model => new TModel();
 
-        public abstract TModel Model { get; }
-
-        public abstract UserControl View { get; }
+        public override TViewModel ViewModel => new TViewModel();
 
         public override void OnStartup()
         {
@@ -25,6 +22,15 @@ namespace App.Core
 
     public abstract class ViewItem
     {
+        public static Guid Id { get; }
+
+        public abstract ViewModelBase ViewModel { get; }
+
+        public abstract ModelBase Model { get; }
+
+        public abstract UserControl View { get; }
+
+
         public abstract void OnStartup();
     }
 }

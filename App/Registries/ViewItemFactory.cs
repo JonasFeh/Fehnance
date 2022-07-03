@@ -5,18 +5,18 @@ using System.Collections.Generic;
 
 namespace App.Registries
 {
-    public class ViewItemFactory
+    public static class ViewItemFactory
     {
-        private Dictionary<Guid,ViewItem> ViewItems { get; set; }
+        public static Dictionary<Guid,ViewItem> ViewItems { get; set; }
 
-        public ViewItemFactory()
+        static ViewItemFactory()
         {
             ViewItems = new Dictionary<Guid,ViewItem>();
 
             ViewItems.Add(BankBalanceViewItem.Id, new BankBalanceViewItem());
         }
 
-        public void StartUpMVVM()
+        public static void StartUpMVVM()
         {
             foreach (var viewItem in ViewItems)
             {

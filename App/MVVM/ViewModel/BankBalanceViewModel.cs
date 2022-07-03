@@ -9,17 +9,28 @@ namespace FinanceOverviewApp.MVVM.ViewModel
 {
     public class BankBalanceViewModel : ViewModelBase<BankBalanceModel>
     {
+        public override void OnStartup()
+        {
+            _bankActivities = new ObservableCollection<BankActivity>();
+        }
 
-        private ObservableCollection<BankActivity> _bankActivities = new ObservableCollection<BankActivity>();
+        private ObservableCollection<BankActivity> _bankActivities;
         public ObservableCollection<BankActivity> BankActivities
         {
-            get => _bankActivities;
+            get
+            {
+                if( _bankActivities == null)
+                {
+                    _bankActivities = new ObservableCollection<BankActivity>(Model.BankActivities);
+                }
+                return _bankActivities;
+            }
             set => SetProperty(ref _bankActivities, value);
         }
 
         private BankActivity _selectedBankActivity;
 
-        public BankActivity SelectedBankActivity 
+        public BankActivity SelectedBankActivity
         {
             get => _selectedBankActivity;
             set => SetProperty(ref _selectedBankActivity, value);
@@ -40,9 +51,6 @@ namespace FinanceOverviewApp.MVVM.ViewModel
                 return m_ImportBankActivities;
             }
         }
-
-
-
 
         private string getBankActivityFilePath()
         {
