@@ -29,7 +29,7 @@ namespace Data.Parser
                     var currentBankActivity = new BankActivityInfo
                     {
                         BankAccountIban = fields[0],
-                        TransactionDate = DateTime.ParseExact(fields[1], "dd.mm.yyyy", System.Globalization.CultureInfo.InvariantCulture),
+                        TransactionDate = DateTime.ParseExact(fields[1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
                         TransactionVolume = new Euro(decimal.Parse(fields[14])),
                         TransactionType = fields[3],
                         Description = fields[4],
