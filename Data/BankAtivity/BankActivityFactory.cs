@@ -6,11 +6,6 @@ namespace Data.BankAtivity
 {
     public class BankActivityFactory
     {
-        private BankActivityType ResolveBankActivityType(BankActivityInfo info)
-        {
-            return info.TransactionVolume.Value >= 0 ? BankActivityType.Income : BankActivityType.Spendings;
-        }
-
         private String NormalizeName(string name)
         {
             name.Trim();
@@ -57,7 +52,7 @@ namespace Data.BankAtivity
                         },
                         Date = info.TransactionDate,
                         Regularity = new ProcessedData.Regularity(),
-                        Type = ResolveBankActivityType(info),
+                        Necessity = Enums.Necessity.Neutral,
                         Name = NormalizeName(info.Creditor),
                     }
                 };

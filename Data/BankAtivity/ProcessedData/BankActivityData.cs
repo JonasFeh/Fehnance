@@ -1,4 +1,5 @@
 ﻿using Common.Currency;
+using Data.BankAtivity.Enums;
 using Data.BankAtivity.ProcessedData;
 
 namespace Data.ProcessedData
@@ -15,7 +16,7 @@ namespace Data.ProcessedData
 
         public DateTime Date { get; set; }
 
-        public BankActivityType Type { get; set; }
+        public Necessity Necessity { get; set; }
 
         public Regularity Regularity { get; set; }
     }

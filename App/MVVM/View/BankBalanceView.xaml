@@ -82,7 +82,7 @@
                         <ColumnDefinition Width="Auto" SharedSizeGroup="TransactionVolume" />
                         <ColumnDefinition Width="Auto" SharedSizeGroup="MainCategory" />
                         <ColumnDefinition Width="Auto" SharedSizeGroup="SubCategory" />
-                        <ColumnDefinition Width="Auto" SharedSizeGroup="Type" />
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Necessity" />
                         <ColumnDefinition Width="Auto" SharedSizeGroup="Regularity" />
                         <ColumnDefinition Width="Auto" SharedSizeGroup="Interval" />
                         <ColumnDefinition Width="Auto" SharedSizeGroup="Date" />
@@ -106,7 +106,7 @@
                     <TextBlock
                         Grid.Column="4"
                         HorizontalAlignment="Center"
-                        Text="Type" />
+                        Text="Necessity" />
                     <TextBlock
                         Grid.Column="5"
                         HorizontalAlignment="Center"
