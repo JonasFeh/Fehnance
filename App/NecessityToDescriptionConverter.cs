@@ -20,13 +20,18 @@ namespace App
         {
             if ((value is String description))
             {
-                switch (description)
+                return description switch
                 {
-                    case "Unknown":
-                        return Necessity.Neutral;
-                    default:
-                        return Necessity.Neutral;
-                }
+                    "Unknown" => Necessity.Neutral,
+                    "Very unnecessary" => Necessity.VeryUnnecessary,
+                    "Unnecessary" => Necessity.Unnecessary,
+                    "Rather unnecessary" => Necessity.RatherUnnecessary,
+                    "Neutral" => Necessity.Neutral,
+                    "Rather necessary" => Necessity.RatherNecessary,
+                    "Necessary" => Necessity.Necessary,
+                    "Very necessary" => Necessity.VeryNecessary,
+                    _ => (object)Necessity.Neutral,
+                };
             }
             return Necessity.Neutral;
         }
