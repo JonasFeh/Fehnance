@@ -7,7 +7,7 @@
     xmlns:viewModel="clr-namespace:FinanceOverviewApp.MVVM.ViewModel"
     x:Name="WindowBankActivity"
     Width="1080"
-    Height="500"
+    Height="1000"
     mc:Ignorable="d">
 
     <UserControl.DataContext>
@@ -17,10 +17,12 @@
         HorizontalAlignment="Left"
         VerticalAlignment="Top"
         Orientation="Horizontal">
+
         <Border
-            x:Name="BorderBankActivity"
+            x:Name="BorderBankActivityMaster"
             Width="1080"
-            Height="500">
+            Height="500"
+            Margin="10,10,10,10">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                     <GradientStop Offset="0.0" Color="#05052e" />
@@ -88,34 +90,42 @@
                         <ColumnDefinition Width="Auto" SharedSizeGroup="Date" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
+                        x:Name="HeaderName"
                         Grid.Column="0"
                         HorizontalAlignment="Center"
                         Text="Name" />
                     <TextBlock
+                        x:Name="HeaderTransactionVolume"
                         Grid.Column="1"
                         HorizontalAlignment="Center"
                         Text="Transaction Volume" />
                     <TextBlock
+                        x:Name="HeaderMainCategory"
                         Grid.Column="2"
                         HorizontalAlignment="Center"
                         Text="Main Category" />
                     <TextBlock
+                        x:Name="HeaderSubCategory"
                         Grid.Column="3"
                         HorizontalAlignment="Center"
                         Text="Sub Category" />
                     <TextBlock
+                        x:Name="HeaderNecessity"
                         Grid.Column="4"
                         HorizontalAlignment="Center"
                         Text="Necessity" />
                     <TextBlock
+                        x:Name="HeaderRegularity"
                         Grid.Column="5"
                         HorizontalAlignment="Center"
                         Text="Regularity" />
                     <TextBlock
+                        x:Name="HeaderInterval"
                         Grid.Column="6"
                         HorizontalAlignment="Center"
                         Text="Interval" />
                     <TextBlock
+                        x:Name="HeaderDate"
                         Grid.Column="7"
                         HorizontalAlignment="Center"
                         Text="Date" />
@@ -132,14 +142,146 @@
                     d:ItemsSource="{d:SampleData ItemCount=5}"
                     Background="#0d1c4d"
                     BorderBrush="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Background}"
+                    IsSynchronizedWithCurrentItem="true"
                     ItemTemplate="{StaticResource BankActivityDataTemplate}"
                     ItemsSource="{Binding BankActivities}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
-                    SelectedItem="{Binding SelectedBankActivity}" />
+                    SelectedItem="{Binding SelectedBankActivity, Mode=TwoWay}" />
             </Grid>
 
         </Border>
+        <Border
+            x:Name="BorderBankActivityDetail"
+            Width="400"
+            Height="400"
+            Margin="10,10,10,10">
+            <Border.Clip>
+                <RectangleGeometry
+                    RadiusX="10"
+                    RadiusY="10"
+                    Rect="0,0,400,400" />
+            </Border.Clip>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Offset="0.0" Color="#05052e" />
+                    <GradientStop Offset="1" Color="#050f2e" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid Margin="10,10,10,10">
+                <Grid.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="FontFamily" Value="/Fonts/#Poppins" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="MinWidth" Value="50" />
+                        <Setter Property="Background" Value="{Binding ElementName=BankActivityList, Path=Background}" />
+                        <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Background}" />
+                        <Setter Property="HorizontalContentAlignment" Value="Right" />
+                        <Setter Property="Margin" Value="0,5,0,0" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="{Binding ElementName=HeaderName, Path=Text}" />
+                <TextBox
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="{Binding SelectedBankActivity.Data.Name, Mode=TwoWay}" />
+
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="{Binding ElementName=HeaderTransactionVolume, Path=Text}" />
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    MinWidth="50"
+                    Margin="0,5,0,0"
+                    HorizontalAlignment="Right"
+                    Background="{Binding ElementName=BankActivityList, Path=Background}"
+                    FontFamily="/Fonts/#Poppins"
+                    Foreground="White"
+                    Text="{Binding SelectedBankActivity.Data.Amount.DisplayValue}" />
+
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="{Binding ElementName=HeaderMainCategory, Path=Text}" />
+                <TextBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{Binding SelectedBankActivity.Data.Category.MainCategory, Mode=TwoWay}" />
+
+                <TextBlock
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Text="{Binding ElementName=HeaderSubCategory, Path=Text}" />
+                <TextBox
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="{Binding SelectedBankActivity.Data.Category.SubCategory, Mode=TwoWay}" />
+
+                <TextBlock
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Text="{Binding ElementName=HeaderNecessity, Path=Text}" />
+                <TextBox
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Text="{Binding SelectedBankActivity.Data.Necessity, Mode=TwoWay}" />
+
+                <TextBlock
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Text="{Binding ElementName=HeaderRegularity, Path=Text}" />
+                <TextBox
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Text="{Binding SelectedBankActivity.Data.Regularity.Type, Mode=TwoWay}" />
+
+                <TextBlock
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Text="{Binding ElementName=HeaderInterval, Path=Text}" />
+                <TextBox
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Text="{Binding SelectedBankActivity.Data.Regularity.Interval, Mode=TwoWay}" />
+
+                <TextBlock
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Text="{Binding ElementName=HeaderDate, Path=Text}" />
+                <TextBlock
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    MinWidth="50"
+                    Margin="0,5,0,0"
+                    HorizontalAlignment="Right"
+                    Background="{Binding ElementName=BankActivityList, Path=Background}"
+                    FontFamily="/Fonts/#Poppins"
+                    Foreground="White"
+                    Text="{Binding SelectedBankActivity.Data.Date, Mode=TwoWay}" />
+
+            </Grid>
+
+
+        </Border>
     </WrapPanel>
 </UserControl>
