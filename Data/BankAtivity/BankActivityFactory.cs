@@ -31,7 +31,7 @@ namespace Data.BankAtivity
             return result;
         }
 
-        public BankActivity Create(IDictionary<BankActivityInfo, BankActivity> bankActivities, BankActivityInfo info)
+        public Transaction Create(IDictionary<BankActivityInfo, Transaction> bankActivities, BankActivityInfo info)
         {
             if (bankActivities == null) throw new ArgumentNullException("Bank activities needed to construct bank acitivities!");
 
@@ -39,17 +39,14 @@ namespace Data.BankAtivity
 
             if (!bankActivities.ContainsKey(info))
             {
-                return new BankActivity
+                return new Transaction
                 {
                     Info = info,
                     Data = new BankActivityData
                     {
                         Amount = info.TransactionVolume,
-                        Category = new ProcessedData.Category
-                        {
-                            MainCategory = String.Empty,
-                            SubCategory = String.Empty
-                        },
+                        MainCategory = String.Empty,
+                        SubCategory = String.Empty,
                         Date = info.TransactionDate,
                         Regularity = new ProcessedData.Regularity(),
                         Necessity = Enums.Necessity.Neutral,
@@ -58,7 +55,7 @@ namespace Data.BankAtivity
                 };
             }
 
-            return new BankActivity
+            return new Transaction
             {
                 Info = info,
                 Data = bankActivities[info].Data,

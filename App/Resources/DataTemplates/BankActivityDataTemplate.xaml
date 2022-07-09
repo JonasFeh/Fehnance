@@ -40,11 +40,11 @@
             <TextBlock
                 Grid.Column="2"
                 HorizontalAlignment="Right"
-                Text="{Binding Path=Data.Category.MainCategory}" />
+                Text="{Binding Path=Data.MainCategory}" />
             <TextBlock
                 Grid.Column="3"
                 HorizontalAlignment="Right"
-                Text="{Binding Path=Data.Category.SubCategory}" />
+                Text="{Binding Path=Data.SubCategory}" />
             <TextBlock
                 Grid.Column="4"
                 HorizontalAlignment="Right"

@@ -11,48 +11,48 @@ namespace FinanceOverviewApp.MVVM.ViewModel
     {
         public override void OnStartup()
         {
-            _bankActivities = new ObservableCollection<BankActivity>();
+            _transactions = new ObservableCollection<Transaction>();
         }
 
-        private ObservableCollection<BankActivity> _bankActivities;
-        public ObservableCollection<BankActivity> BankActivities
+        private ObservableCollection<Transaction> _transactions;
+        public ObservableCollection<Transaction> Transactions
         {
             get
             {
-                if( _bankActivities == null)
+                if( _transactions == null)
                 {
-                    _bankActivities = new ObservableCollection<BankActivity>(Model.BankActivities);
+                    _transactions = new ObservableCollection<Transaction>(Model.Transactions);
                 }
-                return _bankActivities;
+                return _transactions;
             }
-            set => SetProperty(ref _bankActivities, value);
+            set => SetProperty(ref _transactions, value);
         }
 
-        private BankActivity _selectedBankActivity;
+        private Transaction _selectedTransaction;
 
-        public BankActivity SelectedBankActivity
+        public Transaction SelectedTransaction
         {
-            get => _selectedBankActivity;
-            set => SetProperty(ref _selectedBankActivity, value);
+            get => _selectedTransaction;
+            set => SetProperty(ref _selectedTransaction, value);
         }
 
         #region ImportBankActivities
 
-        RelayCommand m_ImportBankActivities;
+        RelayCommand m_ImportTransactions;
 
-        public ICommand ImportBankActivities
+        public ICommand ImportTransactions
         {
             get
             {
-                if (m_ImportBankActivities == null)
+                if (m_ImportTransactions == null)
                 {
-                    m_ImportBankActivities = new RelayCommand(m => BankActivities = new ObservableCollection<BankActivity>(Model.ImportBankActivities(getBankActivityFilePath())));
+                    m_ImportTransactions = new RelayCommand(m => Transactions = new ObservableCollection<Transaction>(Model.ImportTransactions(getTransactionFilePath())));
                 }
-                return m_ImportBankActivities;
+                return m_ImportTransactions;
             }
         }
 
-        private string getBankActivityFilePath()
+        private string getTransactionFilePath()
         {
             var openFileDialog = new OpenFileDialog();
 

@@ -4,7 +4,7 @@ using Data.ProcessedData;
 namespace Data.BankAtivity
 {
     [Serializable]
-    public class BankActivity
+    public class Transaction
     {
         public BankActivityInfo Info { get; set; } = new BankActivityInfo();
 

@@ -29,14 +29,14 @@ namespace App.Startup
 
         private static void LoadBankActivitiesInternal()
         {
-            DataSerializer.Load<List<BankActivity>>(Constants.Data.FileNameBankActivities, out var data);
+            DataSerializer.Load<List<Transaction>>(Constants.Data.FileNameBankActivities, out var data);
 
             if(data == null)
             {
                 return;
             }
 
-            var dictionary = new Dictionary<BankActivityInfo, BankActivity>();
+            var dictionary = new Dictionary<BankActivityInfo, Transaction>();
             foreach (var bankActivity in data)
             {
                 dictionary.Add(bankActivity.Info, bankActivity);

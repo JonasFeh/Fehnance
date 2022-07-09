@@ -8,13 +8,13 @@ namespace Data.DataProcessor
 
         private BankActivityFactory bankActivityFactory = new BankActivityFactory();
 
-        public KeyValuePair<BankActivityInfo, BankActivity> Process(IDictionary<BankActivityInfo, BankActivity> bankActivities, BankActivityInfo rawBankActivity)
+        public KeyValuePair<BankActivityInfo, Transaction> Process(IDictionary<BankActivityInfo, Transaction> bankActivities, BankActivityInfo rawBankActivity)
         {
-            return new KeyValuePair<BankActivityInfo, BankActivity>(rawBankActivity, bankActivityFactory.Create(bankActivities, rawBankActivity));
+            return new KeyValuePair<BankActivityInfo, Transaction>(rawBankActivity, bankActivityFactory.Create(bankActivities, rawBankActivity));
         }
 
-        public IDictionary<BankActivityInfo, BankActivity> AddToExistingDictionary(IDictionary<BankActivityInfo,
-            BankActivity> existingDictionary, List<BankActivityInfo> rawBankActivities)
+        public IDictionary<BankActivityInfo, Transaction> AddToExistingDictionary(IDictionary<BankActivityInfo,
+            Transaction> existingDictionary, List<BankActivityInfo> rawBankActivities)
         {
             foreach (var rawBankActivity in rawBankActivities)
             {
