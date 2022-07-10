@@ -11,6 +11,8 @@
     Height="1000"
     mc:Ignorable="d">
     <UserControl.Resources>
+
+
         <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
             <GradientBrush.GradientStops>
                 <GradientStopCollection>
@@ -57,6 +59,7 @@
 
 
         <Style x:Key="{x:Type ComboBox}" TargetType="ComboBox">
+            <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBox">
@@ -73,7 +76,9 @@
                                 Margin="3,3,23,3"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
-                                Content=""
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                 IsHitTestVisible="False" />
                             <TextBox
                                 x:Name="PART_EditableTextBox"
@@ -82,6 +87,8 @@
                                 VerticalAlignment="Center"
                                 Background="Transparent"
                                 Focusable="True"
+                                FontFamily="/Fonts/#Poppins"
+                                Foreground="AntiqueWhite"
                                 IsReadOnly="{TemplateBinding IsReadOnly}"
                                 Style="{x:Null}"
                                 Template="{StaticResource ComboBoxTextBox}"
@@ -362,7 +369,10 @@
                     Grid.Row="4"
                     Grid.Column="1"
                     Margin="5,5,0,5"
-                    ItemsSource="{Binding Path=NecessityValues}">
+                    ItemsSource="{Binding NecessityValues}"
+                    SelectedItem="{Binding SelectedTransaction.Data.Necessity}"
+                    SelectedValue="{Binding SelectedTransaction, Mode=TwoWay}"
+                    SelectedValuePath="Data.Necessity">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Converter={StaticResource NecessityToDescriptionConverter}}" />

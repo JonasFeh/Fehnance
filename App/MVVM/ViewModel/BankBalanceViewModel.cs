@@ -23,7 +23,7 @@ namespace FinanceOverviewApp.MVVM.ViewModel
         {
             get
             {
-                if( _transactions == null)
+                if (_transactions == null)
                 {
                     _transactions = new ObservableCollection<Transaction>(Model.Transactions);
                 }
@@ -37,12 +37,15 @@ namespace FinanceOverviewApp.MVVM.ViewModel
         public Transaction SelectedTransaction
         {
             get => _selectedTransaction;
-            set => SetProperty(ref _selectedTransaction, value);
+            set
+            {
+                SetProperty(ref _selectedTransaction, value);
+            }
         }
 
         #region Enum values
 
-        public IEnumerable<Necessity> NecessityValues => Enum.GetValues(typeof(Necessity)).Cast<Necessity>();
+        public static IEnumerable<Necessity> NecessityValues => Enum.GetValues(typeof(Necessity)).Cast<Necessity>();
 
         #endregion
 
