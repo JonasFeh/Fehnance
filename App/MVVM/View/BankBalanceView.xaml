@@ -385,20 +385,29 @@
                     Grid.Column="0"
                     Margin="0,5,0,5"
                     Text="{Binding ElementName=HeaderRegularity, Path=Text}" />
-                <TextBox
+                <ComboBox
                     Grid.Row="5"
                     Grid.Column="1"
-                    Text="{Binding SelectedTransaction.Data.Regularity.Type, Mode=TwoWay}" />
+                    Margin="5,5,0,5"
+                    ItemsSource="{Binding RegularityTypeValues}"
+                    SelectedItem="{Binding SelectedTransaction.Data.Regularity.Type}"
+                    SelectedValue="{Binding SelectedTransaction, Mode=TwoWay}"
+                    SelectedValuePath="Data.Regularity.Type" />
+
 
                 <TextBlock
                     Grid.Row="6"
                     Grid.Column="0"
                     Margin="0,5,0,5"
                     Text="{Binding ElementName=HeaderInterval, Path=Text}" />
-                <TextBox
+                <ComboBox
                     Grid.Row="6"
                     Grid.Column="1"
-                    Text="{Binding SelectedTransaction.Data.Regularity.Interval, Mode=TwoWay}" />
+                    Margin="5,5,0,5"
+                    ItemsSource="{Binding RegularityIntervalValues}"
+                    SelectedItem="{Binding SelectedTransaction.Data.Regularity.Interval}"
+                    SelectedValue="{Binding SelectedTransaction, Mode=TwoWay}"
+                    SelectedValuePath="Data.Regularity.Interval" />
 
                 <TextBlock
                     Grid.Row="7"
