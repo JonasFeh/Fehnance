@@ -1,8 +1,12 @@
 ﻿using App.MVVM.Model;
 using Data.BankAtivity;
+using Data.BankAtivity.Enums;
 using FinanceOverviewApp.Core;
 using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace FinanceOverviewApp.MVVM.ViewModel
@@ -35,6 +39,12 @@ namespace FinanceOverviewApp.MVVM.ViewModel
             get => _selectedTransaction;
             set => SetProperty(ref _selectedTransaction, value);
         }
+
+        #region Enum values
+
+        public static IEnumerable<Necessity> NecessityValues => Enum.GetValues(typeof(Necessity)).Cast<Necessity>();
+
+        #endregion
 
         #region ImportBankActivities
 
