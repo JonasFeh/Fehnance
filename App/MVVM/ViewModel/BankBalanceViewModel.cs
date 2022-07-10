@@ -42,7 +42,7 @@ namespace FinanceOverviewApp.MVVM.ViewModel
 
         #region Enum values
 
-        public static IEnumerable<Necessity> NecessityValues => Enum.GetValues(typeof(Necessity)).Cast<Necessity>();
+        public IEnumerable<Necessity> NecessityValues => Enum.GetValues(typeof(Necessity)).Cast<Necessity>();
 
         #endregion
 
