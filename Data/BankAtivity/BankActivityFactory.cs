@@ -55,11 +55,32 @@ namespace Data.BankAtivity
                 };
             }
 
+            if (containsSimilarKey(bankActivities, info, out Transaction transaction))
+            {
+                return transaction;
+            }
+
             return new Transaction
             {
                 Info = info,
                 Data = bankActivities[info].Data,
             };
+        }
+
+        private bool containsSimilarKey(IDictionary<BankActivityInfo, Transaction> bankActivities, BankActivityInfo info, out Transaction transaction)
+        {
+            foreach (var transactionInfo in bankActivities.Keys)
+            {
+                if (transactionInfo.CreditorIban == info.CreditorIban &&
+                    transactionInfo.Creditor == info.Creditor &&
+                    transactionInfo.CreditorSwift == info.CreditorSwift )
+                {
+                    transaction = bankActivities[transactionInfo];
+                    return true;
+                }
+            }
+            transaction = null;
+            return false;
         }
     }
 }
