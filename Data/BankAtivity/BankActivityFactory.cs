@@ -44,7 +44,6 @@ namespace Data.BankAtivity
                     Info = info,
                     Data = bankActivities[info].Data,
                 };
-
             }
 
             if (containsSimilarKey(bankActivities, info, out Transaction transaction))
