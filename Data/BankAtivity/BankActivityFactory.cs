@@ -37,22 +37,14 @@ namespace Data.BankAtivity
 
             if (info == null) throw new ArgumentNullException("Cannot construct a Bankactivity with no information!");
 
-            if (!bankActivities.ContainsKey(info))
+            if (bankActivities.ContainsKey(info))
             {
                 return new Transaction
                 {
                     Info = info,
-                    Data = new BankActivityData
-                    {
-                        Amount = info.TransactionVolume,
-                        MainCategory = String.Empty,
-                        SubCategory = String.Empty,
-                        Date = info.TransactionDate,
-                        Regularity = new ProcessedData.Regularity(),
-                        Necessity = Enums.Necessity.Neutral,
-                        Name = NormalizeName(info.Creditor),
-                    }
+                    Data = bankActivities[info].Data,
                 };
+
             }
 
             if (containsSimilarKey(bankActivities, info, out Transaction transaction))
@@ -63,23 +55,48 @@ namespace Data.BankAtivity
             return new Transaction
             {
                 Info = info,
-                Data = bankActivities[info].Data,
+                Data = new BankActivityData
+                {
+                    Amount = info.TransactionVolume,
+                    MainCategory = String.Empty,
+                    SubCategory = String.Empty,
+                    Date = info.TransactionDate,
+                    Regularity = new ProcessedData.Regularity(),
+                    Necessity = Enums.Necessity.Neutral,
+                    Name = NormalizeName(info.Creditor),
+                }
             };
+
         }
 
         private bool containsSimilarKey(IDictionary<BankActivityInfo, Transaction> bankActivities, BankActivityInfo info, out Transaction transaction)
         {
+            transaction = null;
+
             foreach (var transactionInfo in bankActivities.Keys)
             {
                 if (transactionInfo.CreditorIban == info.CreditorIban &&
                     transactionInfo.Creditor == info.Creditor &&
-                    transactionInfo.CreditorSwift == info.CreditorSwift )
+                    transactionInfo.CreditorSwift == info.CreditorSwift)
                 {
-                    transaction = bankActivities[transactionInfo];
+                    var aSimilarTransactionData = bankActivities[transactionInfo].Data;
+                    transaction = new Transaction
+                    {
+                        Info = info,
+                        Data = new BankActivityData
+                        {
+                            Amount = info.TransactionVolume,
+                            Date = info.TransactionDate,
+                            MainCategory = aSimilarTransactionData.MainCategory,
+                            SubCategory = aSimilarTransactionData.SubCategory,
+                            Name = aSimilarTransactionData.Name,
+                            Necessity = aSimilarTransactionData.Necessity,
+                            Regularity = aSimilarTransactionData.Regularity,
+                        }
+                    };
                     return true;
                 }
             }
-            transaction = null;
             return false;
         }
     }
