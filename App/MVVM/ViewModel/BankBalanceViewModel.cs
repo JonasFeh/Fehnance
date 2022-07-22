@@ -1,4 +1,5 @@
 ﻿using App.MVVM.Model;
+using Common.Currency;
 using Data.BankAtivity;
 using Data.BankAtivity.Enums;
 using FinanceOverviewApp.Core;
@@ -17,6 +18,61 @@ namespace FinanceOverviewApp.MVVM.ViewModel
         {
             _transactions = new ObservableCollection<Transaction>();
         }
+
+        #region Bank balance
+
+        private bool _IsBalanceEditing = false;
+
+        public bool IsBalanceEditing
+        {
+            get => _IsBalanceEditing;
+            set => SetProperty(ref _IsBalanceEditing, value);
+        }
+
+        public decimal CurrentBalance
+        {
+            get => Model.CurrentBalance.Value;
+            set
+            {
+                Model.CurrentBalance = new Euro(value);
+                OnPropertyChanged(nameof(BalanceDisplayValue));
+            }
+        }
+
+        public string BalanceDisplayValue => CurrentBalance.ToString("C2");
+
+
+        RelayCommand m_EditBalance;
+
+        public ICommand EditBalance
+        {
+            get
+            {
+                if (m_EditBalance == null)
+                {
+                    m_EditBalance = new RelayCommand(m => IsBalanceEditing = true);
+                }
+                return m_EditBalance;
+            }
+        }
+
+        RelayCommand m_FinishEditBalance;
+
+        public ICommand FinishEditBalance
+        {
+            get
+            {
+                if (m_FinishEditBalance == null)
+                {
+                    m_FinishEditBalance = new RelayCommand(m => IsBalanceEditing = false);
+                }
+                return m_FinishEditBalance;
+            }
+        }
+
+        #endregion
+
+        #region Transactions
 
         private ObservableCollection<Transaction> _transactions;
         public ObservableCollection<Transaction> Transactions
@@ -42,6 +98,8 @@ namespace FinanceOverviewApp.MVVM.ViewModel
                 SetProperty(ref _selectedTransaction, value);
             }
         }
+
+        #endregion
 
         #region Enum values
 

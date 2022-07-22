@@ -27,9 +27,15 @@ namespace App.Shutdown
             DataSerializer.Save<List<Transaction>>(ProcessImage.Instance.BankActivities.Values.ToList(), Constants.Data.FileNameBankActivities);
         }
 
+        private static void SaveBalance()
+        {
+            DataSerializer.Save<Balance>(ProcessImage.Instance.BankBalance, Constants.Data.FileNameBalance);
+        }
+
         public static void ExecuteShutdownRoutine()
         {
             SaveBankActivities();
+            SaveBalance();
             Shutdown();
         }
 

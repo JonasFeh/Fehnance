@@ -16,10 +16,12 @@ namespace Data
         private static readonly ProcessImage _instance = new ProcessImage();
 
         public static ProcessImage Instance => _instance;
-        
+
         #endregion
 
         public IDictionary<BankActivityInfo, Transaction> BankActivities { get; set; } = new Dictionary<BankActivityInfo, Transaction>();
+
+        public Balance BankBalance { get; set; } = new Balance();
 
     }
 }

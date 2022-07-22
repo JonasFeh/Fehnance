@@ -7,6 +7,7 @@
             public static string DefaultPath => Environment.ExpandEnvironmentVariables("%APPDATA%/Fehnance/");
 
             public static string FileNameBankActivities => "BankActivities";
+            public static string FileNameBalance => "Balance";
         }
     }
 }

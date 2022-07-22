@@ -37,8 +37,16 @@ namespace Data.Parser
             }
 
             TextReader textReader = new StreamReader(aCompleteFilePath);
+            try
+            {
+                data = serializer.Deserialize(textReader) ?? throw new NullReferenceException("Unable to deserialize the file.");
+            }
+            catch (Exception)
+            {
+                data = new object();
+                return false;
+            }
 
-            data = serializer.Deserialize(textReader) ?? throw new NullReferenceException("Unable to deserialize the file.");
             textReader.Close();
 
             return true;

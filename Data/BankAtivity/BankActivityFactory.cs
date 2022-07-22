@@ -6,7 +6,7 @@ namespace Data.BankAtivity
 {
     public class BankActivityFactory
     {
-        private String NormalizeName(string name)
+        private string NormalizeName(string name)
         {
             name.Trim();
             char currentChar = char.MinValue;
@@ -33,7 +33,7 @@ namespace Data.BankAtivity
 
         public Transaction Create(IDictionary<BankActivityInfo, Transaction> bankActivities, BankActivityInfo info)
         {
-            if (bankActivities == null) throw new ArgumentNullException("Bank activities needed to construct bank acitivities!");
+            if (bankActivities == null) throw new ArgumentNullException("Bank activities needed to construct bank activities!");
 
             if (info == null) throw new ArgumentNullException("Cannot construct a Bankactivity with no information!");
 
@@ -57,8 +57,8 @@ namespace Data.BankAtivity
                 Data = new BankActivityData
                 {
                     Amount = info.TransactionVolume,
-                    MainCategory = String.Empty,
-                    SubCategory = String.Empty,
+                    MainCategory = string.Empty,
+                    SubCategory = string.Empty,
                     Date = info.TransactionDate,
                     Regularity = new ProcessedData.Regularity(),
                     Necessity = Enums.Necessity.Neutral,

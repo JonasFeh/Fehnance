@@ -1,5 +1,6 @@
 ﻿using App.Registries;
 using Common;
+using Common.Currency;
 using Data;
 using Data.BankAtivity;
 using Data.InputData;
@@ -24,6 +25,7 @@ namespace App.Startup
         public static void StartUp()
         {
             LoadBankActivitiesInternal();
+            LoadBalanceInternal();
             ViewItemFactory.StartUpMVVM();
         }
 
@@ -43,6 +45,22 @@ namespace App.Startup
             }
 
             ProcessImage.BankActivities = dictionary;
+        }
+
+        private static void LoadBalanceInternal()
+        {
+            DataSerializer.Load<Balance>(Constants.Data.FileNameBalance, out var data);
+            if (data == null)
+            {
+                ProcessImage.BankBalance = new Balance 
+                { 
+                    Amount = new Euro(),
+                    TimeStamp = System.DateTime.Now
+                };
+                return;
+            }
+
+            ProcessImage.BankBalance = data;
         }
 
         #endregion
