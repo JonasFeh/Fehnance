@@ -13,9 +13,10 @@ namespace Data.DataProcessor
             return new KeyValuePair<BankActivityInfo, Transaction>(rawBankActivity, bankActivityFactory.Create(bankActivities, rawBankActivity));
         }
 
-        public IDictionary<BankActivityInfo, Transaction> AddToExistingDictionary(IDictionary<BankActivityInfo,
+        public List<Transaction> AddToExistingDictionary(IDictionary<BankActivityInfo,
             Transaction> existingDictionary, List<BankActivityInfo> rawBankActivities)
         {
+            var result = new List<Transaction>();
             foreach (var rawBankActivity in rawBankActivities)
             {
                 if (rawBankActivity == null) continue;
@@ -24,10 +25,11 @@ namespace Data.DataProcessor
                 {
                     var dictionaryEntry = Process(existingDictionary, rawBankActivity);
                     existingDictionary.Add(dictionaryEntry);
+                    result.Add(dictionaryEntry.Value);
                 }
             }
 
-            return existingDictionary;
+            return result;
         }
     }
 }

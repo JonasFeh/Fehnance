@@ -269,7 +269,7 @@
                     Background="#0d1c4d"
                     BorderBrush="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Background}"
                     Command="{Binding ImportTransactions}"
-                    Content="Import Bank Activities"
+                    Content="Import Transactions"
                     FontFamily="/Fonts/#Poppins"
                     FontSize="14"
                     Foreground="White">
@@ -360,7 +360,19 @@
                     ItemsSource="{Binding Transactions}"
                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
-                    SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}" />
+                    SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}">
+                    <ListBox.InputBindings>
+                        <KeyBinding
+                            Key="Delete"
+                            Command="{Binding DeleteEntry}"
+                            CommandParameter="{Binding Path=Text, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" />
+                        <KeyBinding
+                            Key="Z"
+                            Command="{Binding UndoDeleteEntry}"
+                            CommandParameter="{Binding Path=Text, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                            Modifiers="Ctrl" />
+                    </ListBox.InputBindings>
+                </ListBox>
             </Grid>
 
         </Border>

@@ -18,6 +18,12 @@ namespace App.Core
             Model.OnStartup();
             ViewModel.OnStartup();
         }
+
+        public override void OnShutdown()
+        {
+            Model.OnShutdown();
+            ViewModel.OnShutdown();
+        }
     }
 
     public abstract class ViewItem
@@ -32,5 +38,6 @@ namespace App.Core
 
 
         public abstract void OnStartup();
+        public abstract void OnShutdown();
     }
 }

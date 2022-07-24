@@ -20,5 +20,6 @@ namespace App.MVVM.ViewItem
 
         private readonly UserControl _userControl = new BankBalanceView();
         public override UserControl View => _userControl;
+
     }
 }

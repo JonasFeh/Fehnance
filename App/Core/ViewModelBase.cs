@@ -7,7 +7,10 @@ namespace FinanceOverviewApp.Core
 {
     public class ViewModelBase<TModel> : ViewModelBase, INotifyPropertyChanged where TModel : ModelBase, new()
     {
-
+        public ViewModelBase()
+        {
+            Model.PropertyChanged += OnModelPropertyChanged;
+        }
         protected TModel Model { get; set; } = new TModel();
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -28,13 +31,25 @@ namespace FinanceOverviewApp.Core
             OnPropertyChanged(propertyName);
             return true;
         }
+
+        protected virtual void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(e.PropertyName);
+        }
+
         public virtual void OnStartup()
         {
+            
+        }
+
+        public virtual void OnShutdown()
+        {
+
         }
     }
 
     public class ViewModelBase
     {
-
+        
     }
 }

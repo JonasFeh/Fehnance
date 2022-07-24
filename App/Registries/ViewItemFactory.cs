@@ -24,5 +24,13 @@ namespace App.Registries
             }
         }
 
+        public static void ShutdownMVVM()
+        {
+            foreach (var viewItem in ViewItems)
+            {
+                viewItem.Value.OnShutdown();
+            }
+        }
+
     }
 }

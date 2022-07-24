@@ -7,6 +7,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
@@ -14,6 +15,27 @@ namespace FinanceOverviewApp.MVVM.ViewModel
 {
     public class BankBalanceViewModel : ViewModelBase<BankBalanceModel>
     {
+
+        protected override void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(Model.CurrentBalance):
+                    OnPropertyChanged(nameof(CurrentBalance));
+                    OnPropertyChanged(nameof(BalanceDisplayValue));
+                    break;
+                case nameof(Model.Transactions):
+                    OnPropertyChanged(nameof(CurrentBalance));
+                    OnPropertyChanged(nameof(Transactions));
+                    OnPropertyChanged(nameof(BalanceDisplayValue));
+                    break;
+                case nameof(Model.SelectedTransaction):
+                    OnPropertyChanged(nameof(SelectedTransaction));
+                    break;
+                default:
+                    break;
+            }
+        }
         public override void OnStartup()
         {
             _transactions = new ObservableCollection<Transaction>();
@@ -79,24 +101,73 @@ namespace FinanceOverviewApp.MVVM.ViewModel
         {
             get
             {
-                if (_transactions == null)
-                {
-                    _transactions = new ObservableCollection<Transaction>(Model.Transactions);
-                }
+                _transactions = new ObservableCollection<Transaction>(Model.Transactions);
                 return _transactions;
             }
             set => SetProperty(ref _transactions, value);
         }
 
-        private Transaction _selectedTransaction;
-
         public Transaction SelectedTransaction
         {
-            get => _selectedTransaction;
-            set
+            get => Model.SelectedTransaction;
+            set => Model.SelectedTransaction = value;
+        }
+
+        private List<Transaction> _deletedEntries = new List<Transaction>();
+
+        RelayCommand m_DeleteEntry;
+
+        public ICommand DeleteEntry
+        {
+            get
             {
-                SetProperty(ref _selectedTransaction, value);
+                if (m_DeleteEntry == null)
+                {
+                    m_DeleteEntry = new RelayCommand(m => deleteEntry());
+                }
+                return m_DeleteEntry;
             }
+        }
+
+        private void deleteEntry()
+        {
+            Model.DeleteEntry(SelectedTransaction);
+
+            OnPropertyChanged(nameof(Transactions));
+            OnPropertyChanged(nameof(SelectedTransaction));
+        }
+
+        RelayCommand m_UndoDeleteEntry;
+
+        public ICommand UndoDeleteEntry
+        {
+            get
+            {
+                if (m_UndoDeleteEntry == null)
+                {
+                    m_UndoDeleteEntry = new RelayCommand(m => undoDeleteEntry());
+                }
+                return m_UndoDeleteEntry;
+            }
+        }
+
+
+        private void undoDeleteEntry()
+        {
+            if (Model.DeletedEntries.Count == 0)
+            {
+                return;
+            }
+
+            Model.UndoDeleteEntry();
+
+            OnPropertyChanged(nameof(Transactions));
+            OnPropertyChanged(nameof(SelectedTransaction));
+        }
+
+        private decimal changeCurrentBalance(decimal theAmount)
+        {
+            return CurrentBalance + theAmount;
         }
 
         #endregion
@@ -121,10 +192,32 @@ namespace FinanceOverviewApp.MVVM.ViewModel
             {
                 if (m_ImportTransactions == null)
                 {
-                    m_ImportTransactions = new RelayCommand(m => Transactions = new ObservableCollection<Transaction>(Model.ImportTransactions(getTransactionFilePath())));
+                    m_ImportTransactions = new RelayCommand(m => setTransactions());
                 }
                 return m_ImportTransactions;
             }
+        }
+
+        private void setTransactions()
+        {
+            var fileName = getTransactionFilePath();
+            if (fileName == String.Empty)
+            {
+                return;
+            }
+            Transactions = ListToSortedObservableCollection(Model.ImportTransactions(fileName));
+            OnPropertyChanged(nameof(Transactions));
+        }
+
+        private ObservableCollection<Transaction> ListToSortedObservableCollection(List<Transaction> theList)
+        {
+            var orderedObservableCollection = new ObservableCollection<Transaction>();
+            theList.Sort((x, y) => y.Info.TransactionDate.CompareTo(x.Info.TransactionDate));
+            foreach (var item in theList)
+            {
+                orderedObservableCollection.Add(item);
+            }
+            return orderedObservableCollection;
         }
 
         private string getTransactionFilePath()
@@ -142,6 +235,8 @@ namespace FinanceOverviewApp.MVVM.ViewModel
             }
             return string.Empty;
         }
+
+
         #endregion
     }
 }

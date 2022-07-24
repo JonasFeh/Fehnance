@@ -13,7 +13,7 @@ namespace Data.Parser
             {
                 parser.TextFieldType = FieldType.Delimited;
                 parser.SetDelimiters(";");
-                
+
                 // Discard head;
                 parser.ReadFields();
 
@@ -26,17 +26,52 @@ namespace Data.Parser
                         continue;
                     }
 
-                    var currentBankActivity = new BankActivityInfo
+                    DateTime dateTime;
+                    BankActivityInfo currentBankActivity;
+                    if (DateTime.TryParseExact(fields[1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateTime))
                     {
-                        BankAccountIban = fields[0],
-                        TransactionDate = DateTime.ParseExact(fields[1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
-                        TransactionVolume = new Euro(decimal.Parse(fields[14])),
-                        TransactionType = fields[3],
-                        Description = fields[4],
-                        Creditor = fields[11],
-                        CreditorIban = fields[12],
-                        CreditorSwift = fields[13]
-                    };
+                        currentBankActivity = new BankActivityInfo
+                        {
+                            BankAccountIban = fields[0],
+                            TransactionDate = dateTime,
+                            TransactionVolume = new Euro(decimal.Parse(fields[14])),
+                            TransactionType = fields[3],
+                            Description = fields[4],
+                            Creditor = fields[11],
+                            CreditorIban = fields[12],
+                            CreditorSwift = fields[13]
+                        };
+                    }
+                    else if (DateTime.TryParseExact(fields[1], "dd.MM.yy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateTime))
+                    {
+                        currentBankActivity = new BankActivityInfo
+                        {
+                            BankAccountIban = fields[0],
+                            TransactionDate = dateTime,
+                            TransactionVolume = new Euro(decimal.Parse(fields[14])),
+                            TransactionType = fields[3],
+                            Description = fields[4],
+                            Creditor = fields[11],
+                            CreditorIban = fields[12],
+                            CreditorSwift = fields[13]
+                        };
+                    }
+                    else
+                    {
+                        currentBankActivity = new BankActivityInfo
+                        {
+                            BankAccountIban = fields[0],
+                            TransactionDate = DateTime.Today,
+                            TransactionVolume = new Euro(decimal.Parse(fields[14])),
+                            TransactionType = fields[3],
+                            Description = fields[4],
+                            Creditor = fields[11],
+                            CreditorIban = fields[12],
+                            CreditorSwift = fields[13]
+                        };
+                    }
+
+                    
 
                     bankActivities.Add(currentBankActivity);
                 }
