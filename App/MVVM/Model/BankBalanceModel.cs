@@ -40,10 +40,10 @@ namespace App.MVVM.Model
         {
             if (FilePath == null || FilePath == string.Empty) return new List<Transaction>();
 
-            var importedBankAcitivities = new List<BankActivityInfo>(CsvParser.ParseBankActivities(FilePath));
+            var importedBankAcitivities = new List<TransactionInfo>(CsvParser.ParseBankActivities(FilePath));
 
             
-            var processor = new BankActivityProcessor();
+            var processor = new TransactionProcessor();
 
             var currentBankActivities = ProcessImage.Instance.BankActivities;
             var newTransactions = processor.AddToExistingDictionary(currentBankActivities, importedBankAcitivities);

@@ -38,7 +38,7 @@ namespace App.Startup
                 return;
             }
 
-            var dictionary = new Dictionary<BankActivityInfo, Transaction>();
+            var dictionary = new Dictionary<TransactionInfo, Transaction>();
             foreach (var bankActivity in data)
             {
                 dictionary.Add(bankActivity.Info, bankActivity);

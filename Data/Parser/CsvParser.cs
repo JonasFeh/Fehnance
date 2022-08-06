@@ -6,9 +6,9 @@ namespace Data.Parser
 {
     public static class CsvParser
     {
-        public static IEnumerable<BankActivityInfo> ParseBankActivities(string filePath)
+        public static IEnumerable<TransactionInfo> ParseBankActivities(string filePath)
         {
-            var bankActivities = new List<BankActivityInfo>();
+            var bankActivities = new List<TransactionInfo>();
             using (TextFieldParser parser = new TextFieldParser(filePath))
             {
                 parser.TextFieldType = FieldType.Delimited;
@@ -27,10 +27,10 @@ namespace Data.Parser
                     }
 
                     DateTime dateTime;
-                    BankActivityInfo currentBankActivity;
+                    TransactionInfo currentBankActivity;
                     if (DateTime.TryParseExact(fields[1], "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateTime))
                     {
-                        currentBankActivity = new BankActivityInfo
+                        currentBankActivity = new TransactionInfo
                         {
                             BankAccountIban = fields[0],
                             TransactionDate = dateTime,
@@ -44,7 +44,7 @@ namespace Data.Parser
                     }
                     else if (DateTime.TryParseExact(fields[1], "dd.MM.yy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateTime))
                     {
-                        currentBankActivity = new BankActivityInfo
+                        currentBankActivity = new TransactionInfo
                         {
                             BankAccountIban = fields[0],
                             TransactionDate = dateTime,
@@ -58,7 +58,7 @@ namespace Data.Parser
                     }
                     else
                     {
-                        currentBankActivity = new BankActivityInfo
+                        currentBankActivity = new TransactionInfo
                         {
                             BankAccountIban = fields[0],
                             TransactionDate = DateTime.Today,

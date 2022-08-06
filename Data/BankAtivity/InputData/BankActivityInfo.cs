@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Data.InputData
 {
     [Serializable]
-    public class BankActivityInfo : InputDataBase, IEquatable<BankActivityInfo>
+    public class TransactionInfo : InputDataBase, IEquatable<TransactionInfo>
     {
         public DateTime TransactionDate { get; set; } = DateTime.Now;
 
@@ -27,7 +27,7 @@ namespace Data.InputData
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(BankActivityInfo? other)
+        public bool Equals(TransactionInfo? other)
         {
             if (other == null) return false;
 
@@ -43,11 +43,11 @@ namespace Data.InputData
 
         public override bool Equals(object obj)
         {
-            return Equals(obj as BankActivityInfo);
+            return Equals(obj as TransactionInfo);
         }
 
 
-        public bool Equals(BankActivityInfo? x, BankActivityInfo? y)
+        public bool Equals(TransactionInfo? x, TransactionInfo? y)
         {
             if (x == null || y == null) return false;
 

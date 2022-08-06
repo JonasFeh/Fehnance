@@ -3,18 +3,18 @@ using Data.InputData;
 
 namespace Data.DataProcessor
 {
-    public class BankActivityProcessor
+    public class TransactionProcessor
     {
 
-        private BankActivityFactory bankActivityFactory = new BankActivityFactory();
+        private TransactionFactory bankActivityFactory = new TransactionFactory();
 
-        public KeyValuePair<BankActivityInfo, Transaction> Process(IDictionary<BankActivityInfo, Transaction> bankActivities, BankActivityInfo rawBankActivity)
+        public KeyValuePair<TransactionInfo, Transaction> Process(IDictionary<TransactionInfo, Transaction> bankActivities, TransactionInfo rawBankActivity)
         {
-            return new KeyValuePair<BankActivityInfo, Transaction>(rawBankActivity, bankActivityFactory.Create(bankActivities, rawBankActivity));
+            return new KeyValuePair<TransactionInfo, Transaction>(rawBankActivity, bankActivityFactory.Create(bankActivities, rawBankActivity));
         }
 
-        public List<Transaction> AddToExistingDictionary(IDictionary<BankActivityInfo,
-            Transaction> existingDictionary, List<BankActivityInfo> rawBankActivities)
+        public List<Transaction> AddToExistingDictionary(IDictionary<TransactionInfo,
+            Transaction> existingDictionary, List<TransactionInfo> rawBankActivities)
         {
             var result = new List<Transaction>();
             foreach (var rawBankActivity in rawBankActivities)

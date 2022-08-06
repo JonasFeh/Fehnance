@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Data.BankAtivity
 {
-    public class BankActivityFactory
+    public class TransactionFactory
     {
         private string NormalizeName(string name)
         {
@@ -31,7 +31,7 @@ namespace Data.BankAtivity
             return result;
         }
 
-        public Transaction Create(IDictionary<BankActivityInfo, Transaction> bankActivities, BankActivityInfo info)
+        public Transaction Create(IDictionary<TransactionInfo, Transaction> bankActivities, TransactionInfo info)
         {
             if (bankActivities == null) throw new ArgumentNullException("Bank activities needed to construct bank activities!");
 
@@ -68,7 +68,7 @@ namespace Data.BankAtivity
 
         }
 
-        private bool containsSimilarKey(IDictionary<BankActivityInfo, Transaction> bankActivities, BankActivityInfo info, out Transaction transaction)
+        private bool containsSimilarKey(IDictionary<TransactionInfo, Transaction> bankActivities, TransactionInfo info, out Transaction transaction)
         {
             transaction = null;
 

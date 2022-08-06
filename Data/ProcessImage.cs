@@ -19,7 +19,7 @@ namespace Data
 
         #endregion
 
-        public IDictionary<BankActivityInfo, Transaction> BankActivities { get; set; } = new Dictionary<BankActivityInfo, Transaction>();
+        public IDictionary<TransactionInfo, Transaction> BankActivities { get; set; } = new Dictionary<TransactionInfo, Transaction>();
 
         public Balance BankBalance { get; set; } = new Balance();
 

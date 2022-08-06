@@ -5,10 +5,15 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\Icons\Fehnance_Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Fonts\Poppins-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Icons\Fehnance_Icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
