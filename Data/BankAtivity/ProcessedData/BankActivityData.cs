@@ -1,12 +1,11 @@
 ﻿using Common.Currency;
 using Data.BankAtivity.Enums;
-using Data.BankAtivity.ProcessedData;
 
 namespace Data.ProcessedData
 {
 
     [Serializable]
-    public class BankActivityData
+    public class TransactionData
     {
         public Euro Amount { get; set; }
 
@@ -20,6 +19,6 @@ namespace Data.ProcessedData
 
         public Necessity Necessity { get; set; }
 
-        public Regularity Regularity { get; set; }
+        public RegularityInterval Regularity { get; set; }
     }
 }

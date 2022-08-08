@@ -54,13 +54,13 @@ namespace Data.BankAtivity
             return new Transaction
             {
                 Info = info,
-                Data = new BankActivityData
+                Data = new TransactionData
                 {
                     Amount = info.TransactionVolume,
                     MainCategory = string.Empty,
                     SubCategory = string.Empty,
                     Date = info.TransactionDate,
-                    Regularity = new ProcessedData.Regularity(),
+                    Regularity = Enums.RegularityInterval.None,
                     Necessity = Enums.Necessity.Neutral,
                     Name = NormalizeName(info.Creditor),
                 }
@@ -82,7 +82,7 @@ namespace Data.BankAtivity
                     transaction = new Transaction
                     {
                         Info = info,
-                        Data = new BankActivityData
+                        Data = new TransactionData
                         {
                             Amount = info.TransactionVolume,
                             Date = info.TransactionDate,

@@ -23,7 +23,6 @@
                 <ColumnDefinition Width="Auto" SharedSizeGroup="SubCategory" />
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Necessity" />
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Regularity" />
-                <ColumnDefinition Width="Auto" SharedSizeGroup="Interval" />
                 <ColumnDefinition Width="Auto" SharedSizeGroup="Date" />
             </Grid.ColumnDefinitions>
 
@@ -52,13 +51,9 @@
             <TextBlock
                 Grid.Column="5"
                 HorizontalAlignment="Right"
-                Text="{Binding Path=Data.Regularity.Type}" />
+                Text="{Binding Path=Data.Regularity}" />
             <TextBlock
                 Grid.Column="6"
-                HorizontalAlignment="Right"
-                Text="{Binding Path=Data.Regularity.Interval}" />
-            <TextBlock
-                Grid.Column="7"
                 HorizontalAlignment="Right"
                 Text="{Binding Path=Data.Date, StringFormat='{}{0:dd.MM.yyyy}'}" />
         </Grid>

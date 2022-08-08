@@ -7,6 +7,6 @@
         Monthly,
         Quaterly,
         Yearly,
-        Unknown
+        None
     }
 }

@@ -178,8 +178,6 @@ namespace FinanceOverviewApp.MVVM.ViewModel
 
         public static IEnumerable<RegularityInterval> RegularityIntervalValues => Enum.GetValues(typeof(RegularityInterval)).Cast<RegularityInterval>();
 
-        public static IEnumerable<RegularityType> RegularityTypeValues => Enum.GetValues(typeof(RegularityType)).Cast<RegularityType>();
-
         #endregion
 
         #region ImportBankActivities
