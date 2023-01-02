@@ -9,15 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Images\**" />
+    <EmbeddedResource Remove="Images\**" />
+    <None Remove="Images\**" />
+    <Page Remove="Images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Fonts\Poppins-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\Icons\Fehnance_Icon.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Images\" />
   </ItemGroup>
 
   <ItemGroup>
