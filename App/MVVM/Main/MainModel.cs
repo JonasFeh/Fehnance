@@ -1,6 +1,6 @@
 ﻿using App.Core;
 
-namespace App.MVVM.Model
+namespace App.MVVM.Main
 {
     internal class MainModel : ModelBase
     {

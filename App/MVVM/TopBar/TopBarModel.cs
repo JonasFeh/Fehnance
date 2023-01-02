@@ -2,7 +2,7 @@
 using App.Shutdown;
 using System.Windows;
 
-namespace App.MVVM.Model
+namespace App.MVVM.TopBar
 {
     internal class TopBarModel : ModelBase
     {

@@ -1,6 +1,6 @@
 ﻿using App.Core;
 
-namespace App.MVVM.Model
+namespace App.MVVM.Stock
 {
     internal class StockModel : ModelBase
     {

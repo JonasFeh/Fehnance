@@ -1,11 +1,9 @@
 ﻿using App.Core;
-using App.MVVM.Model;
 using FinanceOverviewApp.MVVM.View;
-using FinanceOverviewApp.MVVM.ViewModel;
 using System;
 using System.Windows.Controls;
 
-namespace App.MVVM.ViewItem
+namespace App.MVVM.BankBalance
 {
     public class BankBalanceViewItem : ViewItem<BankBalanceViewModel, BankBalanceModel>
     {

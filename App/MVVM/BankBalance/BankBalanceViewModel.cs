@@ -1,5 +1,4 @@
-﻿using App.MVVM.Model;
-using Common.Currency;
+﻿using Common.Currency;
 using Data.BankAtivity;
 using Data.BankAtivity.Enums;
 using FinanceOverviewApp.Core;
@@ -11,7 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
-namespace FinanceOverviewApp.MVVM.ViewModel
+namespace App.MVVM.BankBalance
 {
     public class BankBalanceViewModel : ViewModelBase<BankBalanceModel>
     {
@@ -199,7 +198,7 @@ namespace FinanceOverviewApp.MVVM.ViewModel
         private void setTransactions()
         {
             var fileName = getTransactionFilePath();
-            if (fileName == String.Empty)
+            if (fileName == string.Empty)
             {
                 return;
             }

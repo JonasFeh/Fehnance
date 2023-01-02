@@ -1,5 +1,5 @@
 ﻿using App.Core;
-using App.MVVM.ViewItem;
+using App.MVVM.BankBalance;
 using System;
 using System.Collections.Generic;
 

@@ -1,7 +1,6 @@
-﻿using App.MVVM.Model;
-using FinanceOverviewApp.Core;
+﻿using FinanceOverviewApp.Core;
 
-namespace App.MVVM.ViewModel
+namespace App.MVVM.TopBar
 {
 
     internal class TopBarViewModel : ViewModelBase<TopBarModel>

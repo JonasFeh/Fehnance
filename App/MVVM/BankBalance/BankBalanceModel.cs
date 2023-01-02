@@ -8,7 +8,7 @@ using Data.Parser;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace App.MVVM.Model
+namespace App.MVVM.BankBalance
 {
     public class BankBalanceModel : ModelBase
     {
@@ -42,7 +42,7 @@ namespace App.MVVM.Model
 
             var importedBankAcitivities = new List<TransactionInfo>(CsvParser.ParseBankActivities(FilePath));
 
-            
+
             var processor = new TransactionProcessor();
 
             var currentBankActivities = ProcessImage.Instance.BankActivities;
