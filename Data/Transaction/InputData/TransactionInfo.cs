@@ -1,5 +1,4 @@
 ﻿using Common.Currency;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Data.InputData
 {

@@ -1,7 +1,7 @@
 ﻿namespace Data.ProcessedData
 {
     [Serializable]
-    public enum BankActivityType
+    public enum TransactionType
     {
         Income,
         Spendings,
